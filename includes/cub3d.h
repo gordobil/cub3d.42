@@ -100,7 +100,7 @@ int		tab_replace(t_cub3d *cub3d);
 int		get_map(t_cub3d *cub3d, char *line);
 
 // RAY_CAST
-int render_frame(t_cub3d *cub3d);
+int		render_frame(t_cub3d *cub3d);
 
 // PARSING_UTILS
 int		jump_empty(char *line, int i);

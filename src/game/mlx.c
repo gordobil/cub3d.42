@@ -79,14 +79,14 @@ double	cast_single_ray(t_cub3d *cub3d, double angle)
 			+ (y - cub3d->player->y) * (y - cub3d->player->y)));
 }
 
-void	draw_vertical_line(t_cub3d *cub3d, int x, int start, int end, int color)
+void	draw_vertical_line(t_cub3d *cub3d, int x, int start, int end, int clr)
 {
 	int	y;
 
 	y = start;
 	while (y < end)
 	{
-		mlx_pixel_put(cub3d->mlx, cub3d->window, x, y, color);
+		mlx_pixel_put(cub3d->mlx, cub3d->window, x, y, clr);
 		y++;
 	}
 }
