@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafarto- <mafarto-@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/05/30 11:57:44 by mafarto-         ###   ########.fr       */
+/*   Updated: 2025/06/23 17:57:40 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	init_player(t_cub3d *cub3d, t_player *player)
 		player->ang = 180;
 	else if (cub3d->start_pos == 'S')
 		player->ang = 270;
+	cub3d->map[cub3d->start_y][cub3d->start_x] = '0';
 }
 
 int	init_cub3d(t_cub3d *cub3d)

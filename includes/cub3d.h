@@ -24,38 +24,39 @@
 # include "./libft.h"
 
 // SIZES
-# define SQ				32
-# define HE				720
-# define WD				1280
-# define MINI_SCALE     0.2
-# define MINI_TILE      (int)(SQ * MINI_SCALE)
+# define SQ					32
+# define HE					720
+# define WD					1280
+# define MINI_SCALE			0.2
+# define MINI_TILE      	(int)(SQ * MINI_SCALE)
 
 // KEYS
-# define W 				119
-# define S 				115
-# define D				100
-# define A 				97
-# define UP				65362
-# define DOWN			65364
-# define RIGHT			65363
-# define LEFT			65361
-# define ESC			65307
-# define Q 				113
+# define W 					119
+# define S 					115
+# define D					100
+# define A 					97
+# define UP					65362
+# define DOWN				65364
+# define RIGHT				65363
+# define LEFT				65361
+# define ESC				65307
+# define Q 					113
 
 // ERRORS
-# define ERROR_FATAL	1
-# define ERROR_ARGS		2
-# define ERROR_ELEMS	3
-# define ERROR_MAP		4
-# define ERROR_MLX		5
+# define ERROR_FATAL		1
+# define ERROR_ARGS			2
+# define ERROR_ELEMS		3
+# define ERROR_MAP			4
+# define ERROR_MLX			5
 
-# define M_PI 3.14159265358979323846
-# define DEG_TO_RAD(angle) ((angle) * M_PI / 180)
+# define M_PI 				3.14159265358979323846
+# define DEG_TO_RAD(angle)	((angle) * M_PI / 180)
 
 // COLORS
-# define BLUE			"\033[1;34m"
-# define YELLOW			"\033[0;32m"
-# define WHITE			"\033[0m"
+# define WHITE				0xFFFFFF
+# define GREY				0x666666
+# define RED				0xFF0000
+
 
 typedef struct s_player
 {
@@ -73,8 +74,8 @@ typedef struct s_cub3d
 	char		**map;
 	char		**elements;
 	char		start_pos;
-	int			start_x;
 	int			start_y;
+	int			start_x;
 //         GAME         //
 	void		*mlx;
 	void		*window;
@@ -83,7 +84,7 @@ typedef struct s_cub3d
 
 /********************************* GAME **********************************/
 // MLX
-void 		draw_minimap(t_cub3d *cub3d);
+void 	draw_minimap(t_cub3d *cub3d);
 int		mlx_management(t_cub3d cub3d);
 
 /******************************** PARSING ********************************/

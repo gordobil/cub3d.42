@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafarto- <mafarto-@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 10:42:55 by mafarto-          #+#    #+#             */
-/*   Updated: 2025/05/30 12:21:31 by mafarto-         ###   ########.fr       */
+/*   Updated: 2025/06/23 18:03:57 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ void draw_minimap(t_cub3d *cub3d)
 		for (int j = 0; cub3d->map[i][j]; j++)
 		{
 			if (cub3d->map[i][j] == '1')
-				draw_square(cub3d, j * MINI_TILE, i * MINI_TILE, 0x666666);
-			else if (cub3d->map[i][j] == '0' || (cub3d->map[i][j] >= 'A' || 'Z' >= cub3d->map[i][j]))
-				draw_square(cub3d, j * MINI_TILE, i * MINI_TILE, 0xFFFFFF);
+				draw_square(cub3d, j * MINI_TILE, i * MINI_TILE, GREY);
+			else if (cub3d->map[i][j] == '0')
+				draw_square(cub3d, j * MINI_TILE, i * MINI_TILE, WHITE);
 		}
 	}
 
 	int px = cub3d->player->x * MINI_SCALE;
 	int py = cub3d->player->y * MINI_SCALE;
 
-	mlx_pixel_put(cub3d->mlx, cub3d->window, px, py, 0xFF0000); // rojo
+	mlx_pixel_put(cub3d->mlx, cub3d->window, px, py, RED);
 }
