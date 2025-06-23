@@ -31,6 +31,8 @@ OBJECTS             =   $(SOURCES:$(SRC_PATH)%.c=$(OBJ_DIR)%.o)
 INCLUDES			=	./includes/cub3d.h \
 						./includes/libft.h \
 
+ZoneIdentifiers		=   $(shell find $(SRC_PATH) -name "*:ZoneIdentifier")
+
 #COLORS
 BLUE				=	\033[1;34m
 BOLD_BLUE			=	\033[0;34m
@@ -80,6 +82,7 @@ clean:
 					@rm -f $(OBJ)
 					@rm -rf .objects/
 					@rm -rf $(SRC_PATH)*.o
+					@rm -rf $(ZoneIdentifiers)
 					@make clean --no-print-directory -s -C $(MLX_PATH) > /dev/null
 					@make clean --no-print-directory -C $(LIBFT_PATH)
 					@echo "$(WHITE) · Mlx cleaned.$(WHITE)"
