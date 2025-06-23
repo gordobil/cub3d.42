@@ -20,7 +20,7 @@
 # include <math.h>
 # include <sys/stat.h>
 # include <sys/time.h>
-# include "../mlx_src/mlx.h"
+# include "../mlx/mlx.h"
 # include "./libft.h"
 
 // SIZES

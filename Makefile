@@ -14,14 +14,14 @@ NAME				=	cub3d
 
 CC					=	gcc
 CC_FLAGS			=	-Wall -Wextra -Werror
-MLX_FLAGS			=	-L mlx_src/ -lmlx -lXext -lX11 -lm
+MLX_FLAGS			=	-L mlx/ -lmlx -lXext -lX11 -lm
 
 SRC_PATH			=	./src/
 LIBFT_PATH			=	./libft/
-MLX_PATH			=	./mlx_src/
+MLX_PATH			=	./mlx/
 
 LIBFT				=	$(LIBFT_PATH)libft.a
-MLX					=	./mlx_src/libmlx_Linux.a
+MLX					=	./mlx/libmlx_Linux.a
 
 SOURCES				=	$(shell find $(SRC_PATH) -name "*.c")
 
@@ -31,7 +31,7 @@ OBJECTS				=	$(SOURCES:$(SRC_PATH)%.c=$(OBJ_DIR)%.o)
 INCLUDES			=	./includes/cub3d.h \
 						./includes/libft.h \
 
-ZoneIdentifiers		=   $(shell find $(SRC_PATH) -name "*:Zone.Identifier")
+ZoneIdentifiers		=   $(shell find -name "*:Zone.Identifier")
 
 #COLORS
 BLUE				=	\033[1;34m
