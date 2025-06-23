@@ -27,9 +27,9 @@
 # define SQ				32
 # define HE				720
 # define WD				1280
-# define MINI_SCALE     0.2
-# define MINI_TILE      (int)(SQ * MINI_SCALE)
-# define MINI_MAP      (int)((SQ * 2) * MINI_SCALE)
+# define MINI_SCALE	 0.2
+# define MINI_TILE		(int)(SQ * MINI_SCALE)
+# define MINI_MAP		(int)((SQ * 2) * MINI_SCALE)
 
 // KEYS
 # define W 				119

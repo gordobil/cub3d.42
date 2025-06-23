@@ -23,15 +23,15 @@ MLX_PATH			=	./mlx/
 LIBFT				=	$(LIBFT_PATH)libft.a
 MLX					=	./mlx/libmlx_Linux.a
 
-SOURCES             =   $(shell find $(SRC_PATH) -name "*.c")
+SOURCES				=	$(shell find $(SRC_PATH) -name "*.c")
 
-OBJ_DIR             =   .objects/
-OBJECTS             =   $(SOURCES:$(SRC_PATH)%.c=$(OBJ_DIR)%.o)
+OBJ_DIR				=	.objects/
+OBJECTS				=	$(SOURCES:$(SRC_PATH)%.c=$(OBJ_DIR)%.o)
 
 INCLUDES			=	./includes/cub3d.h \
 						./includes/libft.h \
 
-ZoneIdentifiers		=   $(shell find $(SRC_PATH) -name "*:ZoneIdentifier")
+ZoneIdentifiers		=   $(shell find $(SRC_PATH) -name "*:Zone.Identifier")
 
 #COLORS
 BLUE				=	\033[1;34m
