@@ -20,7 +20,7 @@
 # include <math.h>
 # include <sys/stat.h>
 # include <sys/time.h>
-# include "../mlx/mlx.h"
+# include "../mlx_src/mlx.h"
 # include "./libft.h"
 
 // SIZES
@@ -29,7 +29,6 @@
 # define WD				1280
 # define MINI_SCALE     0.2
 # define MINI_TILE      (int)(SQ * MINI_SCALE)
-# define MINI_MAP      (int)((SQ * 2) * MINI_SCALE)
 
 // KEYS
 # define W 				119
@@ -50,7 +49,6 @@
 # define ERROR_MAP		4
 # define ERROR_MLX		5
 
-// MATHS
 # define M_PI 3.14159265358979323846
 # define DEG_TO_RAD(angle) ((angle) * M_PI / 180)
 
@@ -85,7 +83,7 @@ typedef struct s_cub3d
 
 /********************************* GAME **********************************/
 // MLX
-void 	draw_minimap(t_cub3d *cub3d);
+void 		draw_minimap(t_cub3d *cub3d);
 int		mlx_management(t_cub3d cub3d);
 
 /******************************** PARSING ********************************/
@@ -99,6 +97,9 @@ int		map_check(t_cub3d *cub3d);
 // MAP
 int		tab_replace(t_cub3d *cub3d);
 int		get_map(t_cub3d *cub3d, char *line);
+
+// RAY_CAST
+int render_frame(t_cub3d *cub3d);
 
 // PARSING_UTILS
 int		jump_empty(char *line, int i);
