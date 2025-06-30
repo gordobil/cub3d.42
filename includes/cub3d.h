@@ -23,12 +23,14 @@
 # include "../mlx/mlx.h"
 # include "./libft.h"
 
-// SIZES
+// MATH
 # define SQ					32
 # define HE					720
 # define WD					1280
 # define MINI_SCALE			0.2
 # define MINI_TILE      	(int)(SQ * MINI_SCALE)
+# define M_PI 				3.14159265358979323846
+# define DEG_TO_RAD(angle)	((angle) * M_PI / 180)
 
 // KEYS
 # define W 					119
@@ -49,13 +51,12 @@
 # define ERROR_MAP			4
 # define ERROR_MLX			5
 
-# define M_PI 				3.14159265358979323846
-# define DEG_TO_RAD(angle)	((angle) * M_PI / 180)
-
 // COLORS
 # define WHITE				0xFFFFFF
 # define GREY				0x666666
 # define RED				0xFF0000
+# define BLUE				0x0B5394
+# define BLUE2				0x6FA8DC
 
 
 typedef struct s_player
@@ -82,12 +83,24 @@ typedef struct s_cub3d
 	t_player	*player;
 }				t_cub3d;
 
-/********************************* GAME **********************************/
-// MLX
+/*********************************** GAME ************************************/
+// DRAW
+void	draw_vertical_line(t_cub3d *cub3d, int x, int start, int end);
+void	draw_square(t_cub3d *cub3d, int x, int y, int color);
 void 	draw_minimap(t_cub3d *cub3d);
+void	draw_pointer(t_cub3d *cub3d);
+
+// MLX
 int		mlx_management(t_cub3d cub3d);
 
-/******************************** PARSING ********************************/
+// RENDER_FRAME
+int		render_frame(t_cub3d *cub3d);
+
+// WALK
+int		walk_forwards(t_cub3d *cub3d);
+int		walk_backwards(t_cub3d *cub3d);
+
+/********************************** PARSING **********************************/
 // FILE
 int		get_path(char *path, t_cub3d *cub3d);
 int		check_file(t_cub3d *cub3d);

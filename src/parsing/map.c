@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 12:15:33 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/05/07 17:23:19 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:23:51 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,10 @@ int	get_new_map(t_cub3d *cub3d, char **new_map, char *line)
 		new_map[i] = ft_strdup(cub3d->map[i]);
 		i++;
 	}
-	new_map[i] = ft_substr(line, 0, ft_strlen(line) - 2);
+	if (line[ft_strlen(line) - 1] != '\n' && line[ft_strlen(line) - 1] != '\r')
+		new_map[i] = ft_substr(line, 0, ft_strlen(line));
+	else
+		new_map[i] = ft_substr(line, 0, ft_strlen(line) - 2);
 	new_map[i + 1] = NULL;
 	if (!new_map || !new_map[i])
 		return (free_matrix(new_map), -ERROR_FATAL);
