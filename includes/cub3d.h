@@ -52,12 +52,21 @@
 # define ERROR_MLX			5
 
 // COLORS
-# define WHITE				0xFFFFFF
-# define GREY				0x666666
-# define RED				0xFF0000
-# define BLUE				0x0B5394
-# define BLUE2				0x6FA8DC
+# define WHITE				0x00FFFFFF
+# define GREY				0x00666666
+# define RED				0x00FF0000
+# define BLUE				0x000B5394
+# define BLUE2				0x006FA8DC
 
+
+typedef struct s_img
+{
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}				t_img;
 
 typedef struct s_player
 {
@@ -81,6 +90,7 @@ typedef struct s_cub3d
 	void		*mlx;
 	void		*window;
 	t_player	*player;
+	t_img		*img;
 }				t_cub3d;
 
 /*********************************** GAME ************************************/
@@ -111,9 +121,6 @@ int		map_check(t_cub3d *cub3d);
 // MAP
 int		tab_replace(t_cub3d *cub3d);
 int		get_map(t_cub3d *cub3d, char *line);
-
-// RAY_CAST
-int		render_frame(t_cub3d *cub3d);
 
 // PARSING_UTILS
 int		jump_empty(char *line, int i);

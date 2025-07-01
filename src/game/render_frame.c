@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/06/30 13:27:40 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/01 13:18:01 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ int	render_frame(t_cub3d *cub3d)
 
 	ray_step = 60.0 / WD;
 	x = 0;
+	//img->img = mlx_new_image(cub3d->mlx, WD, HE);
+	//img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
+	//		&img->line_length, &img->endian);
 	while (x < WD)
 	{
 		ray_angle = cub3d->player->ang - 30 + (x * ray_step);
@@ -69,6 +72,7 @@ int	render_frame(t_cub3d *cub3d)
 		draw_vertical_line(cub3d, x, draw_start, draw_end);
 		x++;
 	}
+	//mlx_put_image_to_window(cub3d->mlx, cub3d->window, img->img, 0, 0);
 	draw_minimap(cub3d);
 	draw_pointer(cub3d);
 	return (0);

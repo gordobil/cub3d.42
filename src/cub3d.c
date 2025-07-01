@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/06/30 15:35:40 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/01 12:29:57 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ int	init_cub3d(t_cub3d *cub3d)
 	cub3d->start_x = -1;
 	cub3d->player = malloc(sizeof(t_player));
 	if (!cub3d->player)
+		return (free_cub3d(cub3d), -ERROR_FATAL);
+	cub3d->img = malloc(sizeof(t_img));
+	if (!cub3d->img)
 		return (free_cub3d(cub3d), -ERROR_FATAL);
 	return (0);
 }

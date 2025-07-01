@@ -28,6 +28,8 @@ int	free_cub3d(t_cub3d *cub3d)
 		ret += free_matrix(cub3d->map);
 	if (cub3d->player)
 		free(cub3d->player);
+	if (cub3d->img)
+		free(cub3d->img);
 	if (ret != 0)
 		return (error(ERROR_FATAL));
 	return (0);
