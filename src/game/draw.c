@@ -6,12 +6,11 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/01 13:36:34 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/01 13:59:43 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
 
 void	draw_vertical_line(t_cub3d *cub3d, int x, int start, int end)
 {

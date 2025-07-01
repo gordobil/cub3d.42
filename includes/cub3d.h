@@ -28,8 +28,9 @@
 # define HE					720
 # define WD					1280
 # define MINI_SCALE			0.2
-# define MINI_TILE      	(int)(SQ * MINI_SCALE)
 # define M_PI 				3.14159265358979323846
+		// estos 2 dan error d norminette:
+# define MINI_TILE      	(int)(SQ * MINI_SCALE)
 # define DEG_TO_RAD(angle)	((angle) * M_PI / 180)
 
 // KEYS
@@ -57,7 +58,6 @@
 # define RED				0x00FF0000
 # define BLUE				0x000B5394
 # define BLUE2				0x006FA8DC
-
 
 typedef struct s_img
 {
@@ -98,7 +98,7 @@ typedef struct s_cub3d
 //void	my_pixel_put(t_img *img, int x, int y, int color);
 void	draw_vertical_line(t_cub3d *cub3d, int x, int start, int end);
 void	draw_square(t_cub3d *cub3d, int x, int y, int color);
-void 	draw_minimap(t_cub3d *cub3d);
+void	draw_minimap(t_cub3d *cub3d);
 void	draw_pointer(t_cub3d *cub3d);
 
 // MLX

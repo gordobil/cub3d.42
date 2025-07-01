@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/06/30 13:16:52 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/01 13:59:29 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ int	is_walkable(t_cub3d *cub3d, int new_x, int new_y)
 		|| map_x < 0 || map_x >= (int)ft_strlen(cub3d->map[map_y]))
 		return (0);
 	tile = cub3d->map[map_y][map_x];
-	ft_printf("is_walkable -> player: (%d, %d) -> cell: (%d, %d) = '%c' -> angle: (%d)\n",
-		new_x, new_y, map_x, map_y, tile, cub3d->player->ang);
 	if (tile == '1')
 		return (0);
+	ft_printf("player: (%d, %d) | cell: (%d, %d) = '%c' | angle: (%d)\n",
+		new_x, new_y, map_x, map_y, tile, cub3d->player->ang);
 	return (1);
 }
 
@@ -49,7 +49,7 @@ int	walk_forwards(t_cub3d *cub3d)
 		return (0);
 	}
 	else
-		return (ft_printf("Pared\n"), 1);
+		return (ft_printf(" - pared: (%d, %d)\n", new_x / SQ, new_y / SQ), 1);
 }
 
 int	walk_backwards(t_cub3d *cub3d)
