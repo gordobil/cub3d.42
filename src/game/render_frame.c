@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/01 13:31:02 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/01 18:40:02 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ double	cast_single_ray(t_cub3d *cub3d, double angle)
 			+ (y - cub3d->player->y) * (y - cub3d->player->y)));
 }
 
-int	render_frame(t_cub3d *cub3d)
+int	render_frame(t_cub3d *cub3d, t_img *img)
 {
 	int		x;
 	double	ray_angle;
@@ -54,9 +54,9 @@ int	render_frame(t_cub3d *cub3d)
 
 	ray_step = 60.0 / WD;
 	x = 0;
-	//img->img = mlx_new_image(cub3d->mlx, WD, HE);
-	//img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
-	//		&img->line_length, &img->endian);
+	img->img = mlx_new_image(cub3d->mlx, WD, HE);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
+			&img->line_length, &img->endian);
 	while (x < WD)
 	{
 		ray_angle = cub3d->player->ang - 30 + (x * ray_step);
@@ -74,6 +74,6 @@ int	render_frame(t_cub3d *cub3d)
 	}
 	draw_minimap(cub3d);
 	draw_pointer(cub3d);
-	//mlx_put_image_to_window(cub3d->mlx, cub3d->window, img->img, 0, 0);
+	mlx_put_image_to_window(cub3d->mlx, cub3d->window, img->img, 0, 0);
 	return (0);
 }
