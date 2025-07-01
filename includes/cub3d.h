@@ -95,6 +95,7 @@ typedef struct s_cub3d
 
 /*********************************** GAME ************************************/
 // DRAW
+//void	my_pixel_put(t_img *img, int x, int y, int color);
 void	draw_vertical_line(t_cub3d *cub3d, int x, int start, int end);
 void	draw_square(t_cub3d *cub3d, int x, int y, int color);
 void 	draw_minimap(t_cub3d *cub3d);
