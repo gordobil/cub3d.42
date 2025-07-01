@@ -38,7 +38,7 @@ int	handle_input(int keysym, t_cub3d *cub3d)
 	else if (keysym == A || keysym == LEFT)
 		cub3d->player->ang = (cub3d->player->ang + 359) % 360;
 	if (cub3d->player->ang != old_ang || wall == 0)
-		render_frame(cub3d);
+		render_frame(cub3d, cub3d->img);
 	return (0);
 }
 
@@ -51,7 +51,7 @@ int	mlx_management(t_cub3d cub3d)
 	if (!cub3d.window)
 		return (free(cub3d.mlx), free(cub3d.window),
 			free_cub3d(&cub3d), -ERROR_MLX);
-	render_frame(&cub3d);
+	render_frame(&cub3d, cub3d.img);
 	mlx_key_hook(cub3d.window, &handle_input, &cub3d);
 	mlx_hook(cub3d.window, 17, 1, close_window, &cub3d);
 	mlx_loop(cub3d.mlx);
