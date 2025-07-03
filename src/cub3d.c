@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/01 18:25:52 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/03 14:38:22 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	init_cub3d(t_cub3d *cub3d)
 	cub3d->map = NULL;
 	cub3d->elements = malloc(7 * sizeof(char *));
 	if (!cub3d->elements)
-		return (free_cub3d(cub3d), -ERROR_FATAL);
+		return (free(cub3d->elements), free_cub3d(cub3d), -ERROR_FATAL);
 	i = -1;
 	while (++i < 7)
 		cub3d->elements[i] = NULL;
@@ -46,10 +46,10 @@ int	init_cub3d(t_cub3d *cub3d)
 	cub3d->start_x = -1;
 	cub3d->player = malloc(sizeof(t_player));
 	if (!cub3d->player)
-		return (free_cub3d(cub3d), -ERROR_FATAL);
+		return (free(cub3d->player), free_cub3d(cub3d), -ERROR_FATAL);
 	cub3d->img = malloc(sizeof(t_img));
 	if (!cub3d->img)
-		return (free_cub3d(cub3d), -ERROR_FATAL);
+		return (free(cub3d->img), free_cub3d(cub3d), -ERROR_FATAL);
 	return (0);
 }
 

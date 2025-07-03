@@ -128,7 +128,7 @@ int		jump_empty(char *line, int i);
 int		get_elem_length(int i, char *line);
 
 // EXIT
-int		free_matrix(char **matrix);
+void	free_img(t_cub3d *cub3d);
 int		free_cub3d(t_cub3d *cub3d);
 int		error(int code);
 
