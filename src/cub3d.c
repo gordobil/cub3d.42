@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/03 14:38:22 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/08 12:26:28 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void	init_player(t_cub3d *cub3d, t_player *player)
 	player->y = (cub3d->start_y * SQ) - (SQ / 2);
 	player->speed = 1;
 	if (cub3d->start_pos == 'N')
-		player->ang = 0;
-	else if (cub3d->start_pos == 'S')
-		player->ang = 180;
-	else if (cub3d->start_pos == 'E')
-		player->ang = 90;
-	else if (cub3d->start_pos == 'W')
 		player->ang = 270;
+	else if (cub3d->start_pos == 'S')
+		player->ang = 90;
+	else if (cub3d->start_pos == 'E')
+		player->ang = 0;
+	else if (cub3d->start_pos == 'W')
+		player->ang = 180;
 	cub3d->map[cub3d->start_y][cub3d->start_x] = '0';
 }
 
