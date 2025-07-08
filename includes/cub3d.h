@@ -29,7 +29,7 @@
 # define WD					1280
 # define MINI_SCALE			0.2
 # define M_PI 				3.14159265358979323846
-		// estos 2 dan error d norminette:
+		// estos 2 dan error de norminette:
 # define MINI_TILE      	(int)(SQ * MINI_SCALE)
 # define DEG_TO_RAD(angle)	((angle) * M_PI / 180)
 
