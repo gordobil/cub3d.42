@@ -98,8 +98,10 @@ typedef struct s_cub3d
 void	my_pixel_put(t_img *img, int x, int y, int color);
 void	draw_vertical_line(t_cub3d *cub3d, int x, int start, int end);
 void	draw_square(t_cub3d *cub3d, int x, int y, int color);
-void	draw_minimap(t_cub3d *cub3d);
 void	draw_pointer(t_cub3d *cub3d);
+
+// MINIMAP
+void	draw_minimap(t_cub3d *cub3d);
 
 // MLX
 int		mlx_management(t_cub3d cub3d);
@@ -127,6 +129,7 @@ int		get_map(t_cub3d *cub3d, char *line);
 int		jump_empty(char *line, int i);
 int		get_elem_length(int i, char *line);
 
+/************************************ SRC ************************************/
 // EXIT
 void	free_img(t_cub3d *cub3d);
 int		free_cub3d(t_cub3d *cub3d);
