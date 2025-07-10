@@ -12,6 +12,16 @@
 
 #include "../includes/cub3d.h"
 
+void	free_img(t_cub3d *cub3d)
+{
+	if (cub3d->img->img)
+		free(cub3d->img->img);
+	if (cub3d->img->addr)
+		free(cub3d->img->addr);
+	if (cub3d->img)
+		free(cub3d->img);
+}
+
 int	free_cub3d(t_cub3d *cub3d)
 {
 	int	ret;
@@ -26,8 +36,14 @@ int	free_cub3d(t_cub3d *cub3d)
 		ret += free_matrix(cub3d->elements);
 	if (cub3d->map)
 		ret += free_matrix(cub3d->map);
+	if (cub3d->mlx)
+		free(cub3d->mlx);
+	if (cub3d->window)
+		free(cub3d->window);
 	if (cub3d->player)
 		free(cub3d->player);
+	if (cub3d->img)
+		free_img(cub3d);
 	if (ret != 0)
 		return (error(ERROR_FATAL));
 	return (0);
