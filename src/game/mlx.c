@@ -59,3 +59,13 @@ int	mlx_management(t_cub3d cub3d)
 	mlx_loop(cub3d.mlx);
 	return (free(cub3d.mlx), free(cub3d.window), 0);
 }
+
+
+// QUE HAY K HACER:
+
+/*
+	- movimiento
+	- texturas
+	- colores *.cub rgb a hexadecimal
+	- path not found segfault
+*/
