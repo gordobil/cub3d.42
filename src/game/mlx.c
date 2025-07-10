@@ -29,10 +29,12 @@ int	handle_input(int keysym, t_cub3d *cub3d)
 	wall = 1;
 	if (keysym == Q || keysym == ESC)
 		close_window(cub3d);
-	if (keysym == D || keysym == RIGHT)
+	if (keysym == D || keysym == RIGHT) {
 		cub3d->player->ang = (cub3d->player->ang + 1) % 360;
-	else if (keysym == A || keysym == LEFT)
+		ft_printf("angle: %d\n", cub3d->player->ang);}
+	else if (keysym == A || keysym == LEFT) {
 		cub3d->player->ang = (cub3d->player->ang + 359) % 360;
+		ft_printf("angle: %d\n", cub3d->player->ang);}
 	if (keysym == W || keysym == UP)
 		wall = walk_forwards(cub3d);
 	else if (keysym == S || keysym == DOWN)
