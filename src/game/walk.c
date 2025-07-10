@@ -6,7 +6,7 @@
 /*   By: mafarto- <mafarto-@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/10 13:50:01 by mafarto-         ###   ########.fr       */
+/*   Updated: 2025/07/10 14:01:19 by mafarto-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,18 @@ int	walk_forwards(t_cub3d *cub3d)
 	int	new_x;
 	int	new_y;
 
-	new_x = cub3d->player->x + cos(DEG_TO_RAD(cub3d->player->ang)) * cub3d->player->speed;
-	new_y = cub3d->player->y + sin(DEG_TO_RAD(cub3d->player->ang)) * cub3d->player->speed;
-
-	// Comprobar eje X por separado
-	if (is_walkable(cub3d, new_x, cub3d->player->y))
+	new_x = cub3d->player->x
+		+ cos(DEG_TO_RAD(cub3d->player->ang)) * cub3d->player->speed;
+	new_y = cub3d->player->y
+		+ sin(DEG_TO_RAD(cub3d->player->ang)) * cub3d->player->speed;
+	if (is_walkable(cub3d, new_x, new_y))
+	{
 		cub3d->player->x = new_x;
-
-	// Comprobar eje Y por separado
-	if (is_walkable(cub3d, cub3d->player->x, new_y))
 		cub3d->player->y = new_y;
-
-	return (0);
+		return (0);
+	}
+	else
+		return (ft_printf(" - pared: (%d, %d)\n", new_x / SQ, new_y / SQ), 1);
 }
 
 int	walk_backwards(t_cub3d *cub3d)
@@ -57,14 +57,16 @@ int	walk_backwards(t_cub3d *cub3d)
 	int	new_x;
 	int	new_y;
 
-	new_x = cub3d->player->x - cos(DEG_TO_RAD(cub3d->player->ang)) * cub3d->player->speed;
-	new_y = cub3d->player->y - sin(DEG_TO_RAD(cub3d->player->ang)) * cub3d->player->speed;
-
-	if (is_walkable(cub3d, new_x, cub3d->player->y))
+	new_x = cub3d->player->x
+		- cos(DEG_TO_RAD(cub3d->player->ang)) * cub3d->player->speed;
+	new_y = cub3d->player->y
+		- sin(DEG_TO_RAD(cub3d->player->ang)) * cub3d->player->speed;
+	if (is_walkable(cub3d, new_x, new_y))
+	{
 		cub3d->player->x = new_x;
-
-	if (is_walkable(cub3d, cub3d->player->x, new_y))
 		cub3d->player->y = new_y;
-
-	return (0);
+		return (0);
+	}
+	else
+		return (ft_printf("Pared\n"), 1);
 }
