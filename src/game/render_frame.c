@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/10 13:14:57 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/10 16:31:50 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	img_management(t_cub3d *cub3d, t_img *img, int mark)
 		draw_minimap(cub3d);
 		draw_pointer(cub3d);
 		mlx_put_image_to_window(cub3d->mlx, cub3d->window, img->img, 0, 0);
+		mlx_destroy_image(cub3d->mlx, img->img);
 	}
 }
 
