@@ -29,14 +29,14 @@ int	handle_input(int keysym, t_cub3d *cub3d)
 	wall = 1;
 	if (keysym == Q || keysym == ESC)
 		close_window(cub3d);
-	if (keysym == W || keysym == UP)
-		wall = walk_forwards(cub3d);
-	else if (keysym == S || keysym == DOWN)
-		wall = walk_backwards(cub3d);
 	if (keysym == D || keysym == RIGHT)
 		cub3d->player->ang = (cub3d->player->ang + 1) % 360;
 	else if (keysym == A || keysym == LEFT)
 		cub3d->player->ang = (cub3d->player->ang + 359) % 360;
+	if (keysym == W || keysym == UP)
+		wall = walk_forwards(cub3d);
+	else if (keysym == S || keysym == DOWN)
+		wall = walk_backwards(cub3d);
 	if (cub3d->player->ang != old_ang || wall == 0)
 		render_frame(cub3d, cub3d->img);
 	return (0);
