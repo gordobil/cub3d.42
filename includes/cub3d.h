@@ -53,11 +53,11 @@
 # define ERROR_MLX			5
 
 // COLORS
-# define WHITE				0x00FFFFFF
-# define GREY				0x00666666
-# define RED				0x00FF0000
-# define BLUE				0x000B5394
-# define BLUE2				0x006FA8DC
+# define WHITE				0xFFFFFFFF
+# define GREY				0xFF666666
+# define RED				0xFFFF0000
+# define BLUE				0xFF0B5394
+# define BLUE2				0xFF6FA8DC
 
 typedef struct s_img
 {
@@ -74,6 +74,8 @@ typedef struct s_player
 	int			y;
 	int			ang;
 	int			speed;
+	int			f_col;
+	int			c_col;
 }				t_player;
 
 typedef struct s_cub3d
