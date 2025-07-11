@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ngordobi <ngordobi@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/08 12:26:28 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/11 12:15:33 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,3 +70,12 @@ int	main(int argc, char **argv)
 		return (free_cub3d(&cub3d), error(ERROR_MLX));
 	return (free_cub3d(&cub3d));
 }
+
+// QUE HAY K HACER:
+
+/*
+	- movimiento
+	- texturas
+	- colores *.cub rgb a hexadecimal
+	- path not found segfault
+*/
