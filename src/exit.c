@@ -20,6 +20,14 @@ void	free_img(t_cub3d *cub3d)
 		free(cub3d->img->addr);
 	if (cub3d->img)
 		free(cub3d->img);
+	if (cub3d->img->north)
+		free(cub3d->img->north);
+	if (cub3d->img->south)
+		free(cub3d->img->south);
+	if (cub3d->img->west)
+		free(cub3d->img->west);
+	if (cub3d->img->east)
+		free(cub3d->img->east);
 }
 
 void	free_mlx(t_cub3d *cub3d)
@@ -44,7 +52,7 @@ int	free_cub3d(t_cub3d *cub3d, int er)
 		ret += free_matrix(cub3d->elements);
 	if (cub3d->map)
 		ret += free_matrix(cub3d->map);
-	if (er == ERROR_MLX)
+	if (er == ERROR_MLX || er == ERROR_TEXTURES)
 		free_mlx(cub3d);
 	if (cub3d->player)
 		free(cub3d->player);
@@ -63,7 +71,7 @@ int	error(int code)
 		ft_printf("Error\nFatal\n");
 	else if (code == ERROR_ARGS)
 		ft_printf("Error\nInvalid arguments\n");
-	else if (code == ERROR_ELEMS)
+	else if (code == ERROR_ELEMS || code == ERROR_TEXTURES)
 		ft_printf("Error\nInvalid map elements\n");
 	else if (code == ERROR_MAP)
 		ft_printf("Error\nInvalid map\n");

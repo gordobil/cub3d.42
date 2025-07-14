@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/14 13:04:45 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/14 14:04:03 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,9 @@ int	main(int argc, char **argv)
 		return (free_cub3d(&cub3d, ret));
 	if (init_player(&cub3d, cub3d.player) != 0)
 		return (free_cub3d(&cub3d, ERROR_ELEMS));
-	if (mlx_management(cub3d) != 0)
-		return (free_cub3d(&cub3d, ERROR_MLX));
+	ret = mlx_management(cub3d);
+	if (ret != 0)
+		return (free_cub3d(&cub3d, ret));
 	return (free_cub3d(&cub3d, 0));
 }
 

@@ -48,6 +48,7 @@
 # define ERROR_ELEMS		3
 # define ERROR_MAP			4
 # define ERROR_MLX			5
+# define ERROR_TEXTURES		6
 
 // COLORS
 # define WHITE				0xFFFFFFFF
@@ -63,6 +64,10 @@ typedef struct s_img
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+	void		*north;
+	void		*south;
+	void		*west;
+	void		*east;
 }				t_img;
 
 typedef struct s_player
