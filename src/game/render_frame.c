@@ -6,11 +6,16 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/10 16:31:50 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/14 13:19:22 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+double	deg_to_rad(double ang)
+{
+	return (ang * M_PI / 180);
+}
 
 void	img_management(t_cub3d *cub3d, t_img *img, int mark)
 {
@@ -48,8 +53,8 @@ double	cast_single_ray(t_cub3d *cub3d, double angle)
 			|| map_x < 0 || map_x >= (int)ft_strlen(cub3d->map[map_y])
 			|| cub3d->map[map_y][map_x] == '1')
 			break ;
-		x += cos(DEG_TO_RAD(angle)) * step;
-		y += sin(DEG_TO_RAD(angle)) * step;
+		x += cos(deg_to_rad(angle)) * step;
+		y += sin(deg_to_rad(angle)) * step;
 	}
 	return (sqrt((x - cub3d->player->x) * (x - cub3d->player->x)
 			+ (y - cub3d->player->y) * (y - cub3d->player->y)));
@@ -73,7 +78,7 @@ int	render_frame(t_cub3d *cub3d, t_img *img)
 		else if (ray_angle >= 360)
 			ray_angle -= 360;
 		distance = cast_single_ray(cub3d, ray_angle)
-			* cos(DEG_TO_RAD(ray_angle - cub3d->player->ang));
+			* cos(deg_to_rad(ray_angle - cub3d->player->ang));
 		draw_start = (HE / 2) - (((int)((SQ * HE) / distance)) / 2);
 		draw_end = (HE / 2) + (((int)((SQ * HE) / distance)) / 2);
 		draw_vertical_line(cub3d, x, draw_start, draw_end);

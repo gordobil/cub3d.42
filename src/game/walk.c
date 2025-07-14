@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/10 12:31:15 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/14 13:22:01 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int	walk_forwards(t_cub3d *cub3d)
 	int	new_y;
 
 	new_x = cub3d->player->x
-		+ cos(DEG_TO_RAD(cub3d->player->ang)) * cub3d->player->speed;
+		+ cos(deg_to_rad(cub3d->player->ang)) * cub3d->player->speed;
 	new_y = cub3d->player->y
-		+ sin(DEG_TO_RAD(cub3d->player->ang)) * cub3d->player->speed;
+		+ sin(deg_to_rad(cub3d->player->ang)) * cub3d->player->speed;
 	if (is_walkable(cub3d, new_x, new_y))
 	{
 		cub3d->player->x = new_x;
@@ -58,9 +58,9 @@ int	walk_backwards(t_cub3d *cub3d)
 	int	new_y;
 
 	new_x = cub3d->player->x
-		- cos(DEG_TO_RAD(cub3d->player->ang)) * cub3d->player->speed;
+		- cos(deg_to_rad(cub3d->player->ang)) * cub3d->player->speed;
 	new_y = cub3d->player->y
-		- sin(DEG_TO_RAD(cub3d->player->ang)) * cub3d->player->speed;
+		- sin(deg_to_rad(cub3d->player->ang)) * cub3d->player->speed;
 	if (is_walkable(cub3d, new_x, new_y))
 	{
 		cub3d->player->x = new_x;
@@ -68,5 +68,5 @@ int	walk_backwards(t_cub3d *cub3d)
 		return (0);
 	}
 	else
-		return (ft_printf("Pared\n"), 1);
+		return (ft_printf(" - pared: (%d, %d)\n", new_x / SQ, new_y / SQ), 1);
 }

@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/14 12:50:27 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/14 13:13:22 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,14 @@ void	draw_square(t_cub3d *cub3d, int x, int y, int color)
 {
 	int	i;
 	int	j;
+	int	tile;
 
+	tile = SQ * MINI_SCALE;
 	i = 4;
-	while (++i < MINI_TILE + 5)
+	while (++i < tile + 5)
 	{
 		j = 4;
-		while (++j < MINI_TILE + 5)
+		while (++j < tile + 5)
 			my_pixel_put(cub3d->img, x + j, y + i, color);
 	}
 }

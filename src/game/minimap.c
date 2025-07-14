@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/14 13:05:18 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/14 13:14:42 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ void	draw_minimap(t_cub3d *cub3d)
 {
 	int	i;
 	int	j;
+	int	tile;
 
+	tile = SQ * MINI_SCALE;
 	i = -1;
 	while (cub3d->map[++i])
 	{
@@ -47,9 +49,9 @@ void	draw_minimap(t_cub3d *cub3d)
 		while (cub3d->map[i][++j])
 		{
 			if (cub3d->map[i][j] == '1')
-				draw_square(cub3d, j * MINI_TILE, i * MINI_TILE, GREY);
+				draw_square(cub3d, j * tile, i * tile, GREY);
 			else if (cub3d->map[i][j] == '0')
-				draw_square(cub3d, j * MINI_TILE, i * MINI_TILE, WHITE);
+				draw_square(cub3d, j * tile, i * tile, WHITE);
 		}
 	}
 	draw_minimap_pointer(cub3d,
