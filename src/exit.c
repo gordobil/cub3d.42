@@ -72,7 +72,7 @@ int	error(int code)
 	else if (code == ERROR_ARGS)
 		ft_printf("Error\nInvalid arguments\n");
 	else if (code == ERROR_ELEMS || code == ERROR_TEXTURES)
-		ft_printf("Error\nInvalid map elements\n");
+		ft_printf("Error\nInvalid file elements\n");
 	else if (code == ERROR_MAP)
 		ft_printf("Error\nInvalid map\n");
 	else if (code == ERROR_MLX)
