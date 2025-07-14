@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/10 13:46:06 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/14 12:50:27 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ void	draw_vertical_line(t_cub3d *cub3d, int x, int start, int end)
 
 	y = -1;
 	while (++y < start)
-		my_pixel_put(cub3d->img, x, y, BLUE2);
+		my_pixel_put(cub3d->img, x, y, cub3d->player->c_col);
 	y--;
 	while (++y < end)
 		my_pixel_put(cub3d->img, x, y, WHITE);
 	y--;
 	while (++y < HE)
-		my_pixel_put(cub3d->img, x, y, BLUE);
+		my_pixel_put(cub3d->img, x, y, cub3d->player->f_col);
 }
 
 void	draw_square(t_cub3d *cub3d, int x, int y, int color)

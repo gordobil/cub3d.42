@@ -22,7 +22,15 @@ void	free_img(t_cub3d *cub3d)
 		free(cub3d->img);
 }
 
-int	free_cub3d(t_cub3d *cub3d)
+void	free_mlx(t_cub3d *cub3d)
+{
+	if (cub3d->mlx)
+		free(cub3d->mlx);
+	if (cub3d->window)
+		free(cub3d->window);
+}
+
+int	free_cub3d(t_cub3d *cub3d, int er)
 {
 	int	ret;
 
@@ -31,26 +39,26 @@ int	free_cub3d(t_cub3d *cub3d)
 		free(cub3d->map_path);
 	if (cub3d->map_fd > 0)
 		if (!close(cub3d->map_fd))
-			ret += -1;
+			ret -= 1;
 	if (cub3d->elements)
 		ret += free_matrix(cub3d->elements);
 	if (cub3d->map)
 		ret += free_matrix(cub3d->map);
-	if (cub3d->mlx)
-		free(cub3d->mlx);
-	if (cub3d->window)
-		free(cub3d->window);
+	if (er == ERROR_MLX)
+		free_mlx(cub3d);
 	if (cub3d->player)
 		free(cub3d->player);
 	if (cub3d->img)
 		free_img(cub3d);
 	if (ret != 0)
 		return (error(ERROR_FATAL));
-	return (0);
+	return (error(er), 0);
 }
 
 int	error(int code)
 {
+	if (code == 0)
+		return (0);
 	if (code == ERROR_FATAL)
 		ft_printf("Error\nFatal\n");
 	else if (code == ERROR_ARGS)

@@ -116,6 +116,9 @@ int		walk_forwards(t_cub3d *cub3d);
 int		walk_backwards(t_cub3d *cub3d);
 
 /********************************** PARSING **********************************/
+// COLORS
+int	get_colors(char **elems, t_player *player, int i);
+
 // FILE
 int		get_path(char *path, t_cub3d *cub3d);
 int		check_file(t_cub3d *cub3d);
@@ -134,7 +137,7 @@ int		get_elem_length(int i, char *line);
 /************************************ SRC ************************************/
 // EXIT
 void	free_img(t_cub3d *cub3d);
-int		free_cub3d(t_cub3d *cub3d);
+int		free_cub3d(t_cub3d *cub3d, int error);
 int		error(int code);
 
 #endif

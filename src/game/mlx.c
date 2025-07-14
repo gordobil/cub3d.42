@@ -48,11 +48,10 @@ int	mlx_management(t_cub3d cub3d)
 {
 	cub3d.mlx = mlx_init();
 	if (!cub3d.mlx)
-		return (free(cub3d.mlx), free_cub3d(&cub3d), -ERROR_MLX);
+		return (ERROR_MLX);
 	cub3d.window = mlx_new_window(cub3d.mlx, WD, HE, "cub3d");
 	if (!cub3d.window)
-		return (free(cub3d.mlx), free(cub3d.window),
-			free_cub3d(&cub3d), -ERROR_MLX);
+		return (ERROR_MLX);
 	render_frame(&cub3d, cub3d.img);
 	mlx_key_hook(cub3d.window, &handle_input, &cub3d);
 	mlx_hook(cub3d.window, 17, 1, close_window, &cub3d);

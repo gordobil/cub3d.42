@@ -82,11 +82,11 @@ int	get_elements(char *line, t_cub3d *cub3d)
 	{
 		i = index_update(i, j, line);
 		if (line[i] == '\0' || line[i] == '\n' || line[i] == '\r')
-			return (elem_manag(elem, -1), -ERROR_ELEMS);
+			return (elem_manag(elem, -1), ERROR_ELEMS);
 		cub3d->elements[j] = ft_substr(line, i, get_elem_length(i, line));
 	}
 	else
-		return (elem_manag(elem, -1), -ERROR_ELEMS);
+		return (elem_manag(elem, -1), ERROR_ELEMS);
 	return (j++, elem_manag(elem, -1), 0);
 }
 
@@ -104,7 +104,7 @@ int	check_file(t_cub3d *cub3d)
 		{
 			ret = get_elements(line, cub3d);
 			if (ret == -ERROR_ELEMS)
-				return (close(cub3d->map_fd), -ERROR_ELEMS);
+				return (close(cub3d->map_fd), ERROR_ELEMS);
 			else if (ret == 1)
 				ret = get_map(cub3d, line);
 			if (ret != 0)
@@ -115,6 +115,6 @@ int	check_file(t_cub3d *cub3d)
 	if (ret < 0)
 		return (close(cub3d->map_fd), ret);
 	if (!cub3d->map || !cub3d->map[0])
-		return (close(cub3d->map_fd), -ERROR_MAP);
+		return (close(cub3d->map_fd), ERROR_MAP);
 	return (close(cub3d->map_fd), tab_replace(cub3d), map_check(cub3d));
 }
