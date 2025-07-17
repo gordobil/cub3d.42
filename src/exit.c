@@ -18,8 +18,6 @@ void	free_img(t_cub3d *cub3d)
 		free(cub3d->img->img);
 	if (cub3d->img->addr)
 		free(cub3d->img->addr);
-	if (cub3d->img)
-		free(cub3d->img);
 	if (cub3d->img->north)
 		free(cub3d->img->north);
 	if (cub3d->img->south)
@@ -28,6 +26,8 @@ void	free_img(t_cub3d *cub3d)
 		free(cub3d->img->west);
 	if (cub3d->img->east)
 		free(cub3d->img->east);
+	if (cub3d->img)
+		free(cub3d->img);
 }
 
 void	free_mlx(t_cub3d *cub3d)
@@ -45,9 +45,6 @@ int	free_cub3d(t_cub3d *cub3d, int er)
 	ret = 0;
 	if (cub3d->map_path)
 		free(cub3d->map_path);
-	if (cub3d->map_fd > 0)
-		if (!close(cub3d->map_fd))
-			ret -= 1;
 	if (cub3d->elements)
 		ret += free_matrix(cub3d->elements);
 	if (cub3d->map)
@@ -58,6 +55,8 @@ int	free_cub3d(t_cub3d *cub3d, int er)
 		free(cub3d->player);
 	if (cub3d->img)
 		free_img(cub3d);
+	free(cub3d);
+	ft_printf("freed\n");
 	if (ret != 0)
 		return (error(ERROR_FATAL));
 	return (error(er), 0);

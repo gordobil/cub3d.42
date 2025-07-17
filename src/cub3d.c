@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/17 18:40:12 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/17 20:53:21 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	init_cub3d(t_cub3d *cub3d)
 	if (!cub3d->elements)
 		return (ERROR_FATAL);
 	i = -1;
-	while (++i < 7)
+ 	while (++i < 7)
 		cub3d->elements[i] = NULL;
 	cub3d->start_pos = 'X';
 	cub3d->start_y = -1;
@@ -50,35 +50,35 @@ int	init_cub3d(t_cub3d *cub3d)
 	cub3d->player = malloc(sizeof(t_player));
 	if (!cub3d->player)
 		return (ERROR_FATAL);
-	cub3d->img = malloc(sizeof(t_img));
-	if (!cub3d->img)
-		return (ERROR_FATAL);
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	t_cub3d	cub3d;
+	t_cub3d	*cub3d;
 	int		ret;
 
-	if (init_cub3d(&cub3d) != 0)
-		return (free_cub3d(&cub3d, ERROR_FATAL));
-	if (argc != 2 || !argv[1] || get_path(argv[1], &cub3d) != 0)
-		return (free_cub3d(&cub3d, ERROR_ARGS));
-	ret = check_file(&cub3d);
+	cub3d = malloc(sizeof(t_cub3d));
+	if (!cub3d || cub3d == NULL)
+		return (error(ERROR_FATAL));
+	if (init_cub3d(cub3d) != 0)
+		return (free_cub3d(cub3d, ERROR_FATAL));
+	if (argc != 2 || !argv[1] || get_path(argv[1], cub3d) != 0)
+		return (free_cub3d(cub3d, ERROR_ARGS));
+	ret = check_file(cub3d);
 	if (ret != 0)
-		return (free_cub3d(&cub3d, ret));
-	if (init_player(&cub3d, cub3d.player) != 0)
-		return (free_cub3d(&cub3d, ERROR_ELEMS));
+		return (free_cub3d(cub3d, ret));
+	if (init_player(cub3d, cub3d->player) != 0)
+		return (free_cub3d(cub3d, ERROR_ELEMS));
 	ret = mlx_management(cub3d);
 	if (ret != 0)
-		return (free_cub3d(&cub3d, ret));
-	return (free_cub3d(&cub3d, 0));
+		return (free_cub3d(cub3d, ret));
+	return (free_cub3d(cub3d, 0));
 }
 
 // QUE HAY K HACER:
 
 /*
-	- leak colors
+	- leaks
 	- texturas
 */

@@ -108,7 +108,7 @@ void	draw_pointer(t_cub3d *cub3d);
 void	draw_minimap(t_cub3d *cub3d);
 
 // MLX
-int		mlx_management(t_cub3d cub3d);
+int		mlx_management(t_cub3d *cub3d);
 
 // RENDER_FRAME
 double	deg_to_rad(double ang);

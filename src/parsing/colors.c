@@ -6,11 +6,22 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/17 18:08:08 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/17 19:36:13 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+int	get_num(char *elem, int s, int len)
+{
+	char	*temp;
+	int		n;
+
+	temp = ft_substr(elem, s, len);
+	n = ft_atoi(temp);
+	free(temp);
+	return (n);
+}
 
 void	set_colors(t_player *player, int i, int c[3])
 {
@@ -22,10 +33,10 @@ void	set_colors(t_player *player, int i, int c[3])
 
 int	get_colors(char **elems, t_player *player, int i)
 {
-	int	j;
-	int	x;
-	int	start;
-	int	c[3];
+	int		j;
+	int		x;
+	int		start;
+	int		c[3];
 
 	while (++i < 6)
 	{
@@ -40,7 +51,7 @@ int	get_colors(char **elems, t_player *player, int i)
 			if (((elems[i][j] < '0' || elems[i][j] > '9') && elems[i][j] != ','
 				&& elems[i][j] != '\0') || (x == 2 && elems[i][j] != '\0'))
 				return (ERROR_ELEMS);
-			c[x] = ft_atoi(ft_substr(elems[i], start, j - start));
+			c[x] = get_num(elems[i], start, j - start);
 			if (c[x] > 255 || c[x] < 0)
 				return (ERROR_ELEMS);
 		}

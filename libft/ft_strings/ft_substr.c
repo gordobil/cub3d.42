@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngordobi <ngordobi@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 16:59:11 by ngordobi          #+#    #+#             */
-/*   Updated: 2024/11/25 10:11:43 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/17 19:20:18 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	if (len >= ft_strlen(s + start))
 		len = ft_strlen(s + start);
 	sub_s = ft_calloc(len + 1, sizeof(char));
-	if (sub_s == NULL)
+	if (!sub_s)
 		return (NULL);
 	i = 0;
 	while (i < len)
