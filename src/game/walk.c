@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/14 13:22:01 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/17 17:22:25 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	is_walkable(t_cub3d *cub3d, int new_x, int new_y)
 
 int	walk_forwards(t_cub3d *cub3d)
 {
-	int	new_x;
-	int	new_y;
+	double	new_x;
+	double	new_y;
 
 	new_x = cub3d->player->x
 		+ cos(deg_to_rad(cub3d->player->ang)) * cub3d->player->speed;
@@ -54,8 +54,8 @@ int	walk_forwards(t_cub3d *cub3d)
 
 int	walk_backwards(t_cub3d *cub3d)
 {
-	int	new_x;
-	int	new_y;
+	double	new_x;
+	double	new_y;
 
 	new_x = cub3d->player->x
 		- cos(deg_to_rad(cub3d->player->ang)) * cub3d->player->speed;

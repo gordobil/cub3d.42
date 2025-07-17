@@ -72,8 +72,8 @@ typedef struct s_img
 
 typedef struct s_player
 {
-	int			x;
-	int			y;
+	double		x;
+	double		y;
 	int			ang;
 	int			speed;
 	int			f_col;
