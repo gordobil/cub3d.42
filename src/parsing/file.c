@@ -66,12 +66,13 @@ int	index_update(int i, int j, char *line)
 
 int	get_elements(char *line, t_cub3d *cub3d)
 {
-	char		*elem[7];
+	char		**elem;
 	int			i;
 	static int	j;
 
 	if (j > 5)
 		return (j++, 1);
+	elem = malloc(7 * sizeof(char *));
 	elem_manag(elem, 1);
 	i = jump_empty(line, 0);
 	if (i == -1)

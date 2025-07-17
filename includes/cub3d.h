@@ -117,6 +117,8 @@ int		render_frame(t_cub3d *cub3d, t_img *img);
 // WALK
 int		walk_forwards(t_cub3d *cub3d);
 int		walk_backwards(t_cub3d *cub3d);
+int		walk_right(t_cub3d *cub3d);
+int		walk_left(t_cub3d *cub3d);
 
 /********************************** PARSING **********************************/
 // COLORS

@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/14 14:04:03 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/17 18:40:12 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,6 @@ int	main(int argc, char **argv)
 // QUE HAY K HACER:
 
 /*
-	- movimiento
+	- leak colors
 	- texturas
 */
