@@ -46,11 +46,22 @@ int	handle_input(int keysym, t_cub3d *cub3d)
 	return (0);
 }
 
+void	init_img(t_img *img)
+{
+	img->img = NULL;
+	img->addr = NULL;
+	img->north = NULL;
+	img->south = NULL;
+	img->west = NULL;
+	img->east = NULL;
+}
+
 int	mlx_management(t_cub3d *cub3d)
 {
 	cub3d->img = malloc(sizeof(t_img));
 	if (!cub3d->img)
 		return (ERROR_FATAL);
+	init_img(cub3d->img);
 	cub3d->mlx = mlx_init();
 	if (!cub3d->mlx)
 		return (ERROR_MLX);

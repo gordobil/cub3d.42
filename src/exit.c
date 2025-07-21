@@ -56,7 +56,6 @@ int	free_cub3d(t_cub3d *cub3d, int er)
 	if (cub3d->img)
 		free_img(cub3d);
 	free(cub3d);
-	ft_printf("freed\n");
 	if (ret != 0)
 		return (error(ERROR_FATAL));
 	return (error(er), 0);

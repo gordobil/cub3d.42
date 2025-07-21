@@ -90,10 +90,11 @@ int	get_elements(char *line, t_cub3d *cub3d)
 		if (cub3d->elements[j])
 			free (cub3d->elements[j]);
 		cub3d->elements[j] = ft_substr(line, i, get_elem_length(i, line));
+		j++;
 	}
 	else
 		return (elem_manag(elem, -1), ERROR_ELEMS);
-	return (j++, elem_manag(elem, -1), 0);
+	return (elem_manag(elem, -1), 0);
 }
 
 int	check_file(t_cub3d *cub3d)

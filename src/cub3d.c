@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ngordobi <ngordobi@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/17 20:54:48 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/21 12:10:17 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,12 @@ int	init_cub3d(t_cub3d *cub3d)
 	cub3d->start_pos = 'X';
 	cub3d->start_y = -1;
 	cub3d->start_x = -1;
+	cub3d->mlx = NULL;
+	cub3d->window = NULL;
 	cub3d->player = malloc(sizeof(t_player));
 	if (!cub3d->player)
 		return (ERROR_FATAL);
+	cub3d->img = NULL;
 	return (0);
 }
 
