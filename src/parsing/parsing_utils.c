@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 12:23:09 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/05/06 11:33:00 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/22 13:42:18 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,11 @@ int	get_elem_length(int i, char *line)
 		&& line[i] != ' ' && line[i] != '	')
 		i++;
 	return (i - start);
+}
+
+void	close_file(int fd, char *line)
+{
+	close(fd);
+	if_free(line);
+	get_next_line(-1);
 }

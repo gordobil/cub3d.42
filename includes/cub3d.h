@@ -84,7 +84,7 @@ typedef struct s_cub3d
 {
 //         INFO         //
 	char		*map_path;
-	int			map_fd;
+	int			fd;
 	char		**map;
 	char		**elements;
 	char		start_pos;
@@ -122,7 +122,7 @@ int		walk_left(t_cub3d *cub3d);
 
 /********************************** PARSING **********************************/
 // COLORS
-int		get_colors(char **elems, t_player *player, int i);
+int		get_colors(char **elems, t_player *player, int i, int j);
 
 // FILE
 int		get_path(char *path, t_cub3d *cub3d);
@@ -138,6 +138,7 @@ int		get_map(t_cub3d *cub3d, char *line);
 // PARSING_UTILS
 int		jump_empty(char *line, int i);
 int		get_elem_length(int i, char *line);
+void	close_file(int fd, char *line);
 
 /************************************ SRC ************************************/
 // EXIT

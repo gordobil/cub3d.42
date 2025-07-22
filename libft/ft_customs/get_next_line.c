@@ -52,15 +52,15 @@ char	*buffer_update(char *buffer)
 		free(buffer);
 		return (NULL);
 	}
-	temp_buff = ft_calloc((ft_strlen(buffer) - i++), sizeof(char));
+	temp_buff = ft_calloc((ft_strlen(buffer) - i), sizeof(char));
 	if (!temp_buff)
 		return (free(buffer), NULL);
+	i++;
 	j = 0;
 	while (buffer[i] != '\0')
 		temp_buff[j++] = buffer[i++];
 	temp_buff[j] = '\0';
-	free (buffer);
-	return (temp_buff);
+	return (free(buffer), temp_buff);
 }
 
 char	*append(char *buffer, char *temp_buff)
@@ -105,7 +105,7 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (fd < 0)
-		return (NULL);
+		return (if_free(buffer), NULL);
 	buffer = read_text(fd, buffer);
 	if (!buffer)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/21 12:10:17 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/22 13:44:00 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	init_player(t_cub3d *cub3d, t_player *player)
 	else if (cub3d->start_pos == 'W')
 		player->ang = 180;
 	cub3d->map[cub3d->start_y][cub3d->start_x] = '0';
-	if (get_colors(cub3d->elements, player, 3) != 0)
+	if (get_colors(cub3d->elements, player, 3, -1) != 0)
 		return (ERROR_ELEMS);
 	return (0);
 }
@@ -36,7 +36,7 @@ int	init_cub3d(t_cub3d *cub3d)
 	int	i;
 
 	cub3d->map_path = NULL;
-	cub3d->map_fd = 0;
+	cub3d->fd = 0;
 	cub3d->map = NULL;
 	cub3d->elements = malloc(7 * sizeof(char *));
 	if (!cub3d->elements)
@@ -82,6 +82,9 @@ int	main(int argc, char **argv)
 // QUE HAY K HACER:
 
 /*
-	- leaks
 	- texturas
+	- antes de entregar meter los archivos a mano en el Makefile,
+		no se pueden poner comandos de shell al parecer
 */
+
+//valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s

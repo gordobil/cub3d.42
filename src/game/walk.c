@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walk.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ngordobi <ngordobi@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/17 20:42:59 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/22 11:39:53 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ int	walk_forwards(t_cub3d *cub3d)
 		cub3d->player->y = new_y;
 		return (0);
 	}
-	else
-		return (1);
+	return (1);
 }
 
 int	walk_backwards(t_cub3d *cub3d)
@@ -65,8 +64,7 @@ int	walk_backwards(t_cub3d *cub3d)
 		cub3d->player->y = new_y;
 		return (0);
 	}
-	else
-		return (1);
+	return (1);
 }
 
 int	walk_right(t_cub3d *cub3d)
@@ -84,8 +82,7 @@ int	walk_right(t_cub3d *cub3d)
 		cub3d->player->y = new_y;
 		return (0);
 	}
-	else
-		return (1);
+	return (1);
 }
 
 int	walk_left(t_cub3d *cub3d)
@@ -103,6 +100,5 @@ int	walk_left(t_cub3d *cub3d)
 		cub3d->player->y = new_y;
 		return (0);
 	}
-	else
-		return (1);
+	return (1);
 }

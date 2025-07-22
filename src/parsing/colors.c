@@ -3,21 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ngordobi <ngordobi@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/17 19:36:13 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/22 13:31:05 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	get_num(char *elem, int s, int len)
+int	get_num(char *elem, int s, int j, int k)
 {
 	char	*temp;
 	int		n;
 
-	temp = ft_substr(elem, s, len);
+	if (((elem[j] < '0' || elem[j] > '9') && elem[j] != ','
+			&& elem[j] != '\0') || (k == 2 && elem[j] != '\0'))
+		return (-ERROR_ELEMS);
+	temp = ft_substr(elem, s, j - s);
 	n = ft_atoi(temp);
 	free(temp);
 	return (n);
@@ -31,29 +34,27 @@ void	set_colors(t_player *player, int i, int c[3])
 		player->c_col = 255 | (c[0] << 24) | (c[1] << 16) | (c[2] << 8);
 }
 
-int	get_colors(char **elems, t_player *player, int i)
+int	get_colors(char **elems, t_player *player, int i, int j)
 {
-	int		j;
-	int		x;
+	int		k;
 	int		start;
 	int		c[3];
 
-	while (++i < 6)
+	while (elems[++i] && i <= 5)
 	{
 		j = -1;
-		x = -1;
-		while (elems[i][++j] != '\0' && ++x <= 2 && (elems[i][j] == ',' ||
-			(elems[i][j] >= '0' && elems[i][j] <= '9')))
+		k = -1;
+		while (elems[i][++j] != '\0' && ++k <= 2 && (elems[i][j] == ',' ||
+			(elems[i][j] > 47 && elems[i][j] < 58)))
 		{
 			start = j;
-			while (elems[i][j] >= '0' && elems[i][j] <= '9')
+			while (elems[i][j] != '\0' && elems[i][j] > 47 && elems[i][j] < 58)
 				j++;
-			if (((elems[i][j] < '0' || elems[i][j] > '9') && elems[i][j] != ','
-				&& elems[i][j] != '\0') || (x == 2 && elems[i][j] != '\0'))
+			c[k] = get_num(elems[i], start, j, k);
+			if (c[k] < 0 || c[k] > 255)
 				return (ERROR_ELEMS);
-			c[x] = get_num(elems[i], start, j - start);
-			if (c[x] > 255 || c[x] < 0)
-				return (ERROR_ELEMS);
+			if (elems[i][j] == '\0')
+				break ;
 		}
 		set_colors(player, i, c);
 	}
