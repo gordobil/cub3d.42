@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_frame.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mafarto- <mafarto-@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/14 13:19:22 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/23 13:22:35 by mafarto-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,26 +63,31 @@ double	cast_single_ray(t_cub3d *cub3d, double angle)
 int	render_frame(t_cub3d *cub3d, t_img *img)
 {
 	int		x;
-	double	ray_angle;
-	double	distance;
-	int		draw_start;
-	int		draw_end;
+	int		y;
+	double	ray_angle, distance;
+	int		draw_start, draw_end;
 
 	x = -1;
 	img_management(cub3d, img, 0);
 	while (++x < WD)
 	{
 		ray_angle = cub3d->player->ang - 30 + (x * (60.0 / WD));
-		if (ray_angle < 0)
-			ray_angle += 360;
-		else if (ray_angle >= 360)
-			ray_angle -= 360;
+		if (ray_angle < 0) ray_angle += 360;
+		else if (ray_angle >= 360) ray_angle -= 360;
 		distance = cast_single_ray(cub3d, ray_angle)
 			* cos(deg_to_rad(ray_angle - cub3d->player->ang));
 		draw_start = (HE / 2) - (((int)((SQ * HE) / distance)) / 2);
 		draw_end = (HE / 2) + (((int)((SQ * HE) / distance)) / 2);
-		draw_vertical_line(cub3d, x, draw_start, draw_end);
+		if (draw_start < 0) draw_start = 0;
+		if (draw_end >= HE) draw_end = HE - 1;
+		y = draw_start;
+		while (y < draw_end)
+		{
+			draw_textures(cub3d, x, y);
+			y++;
+		}
 	}
 	img_management(cub3d, img, 1);
 	return (0);
 }
+
