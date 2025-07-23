@@ -102,7 +102,6 @@ typedef struct s_ray
 typedef struct s_cub3d
 {
 //         INFO         //
-	char		*map_path;
 	int			fd;
 	char		**map;
 	char		**elements;
@@ -168,6 +167,7 @@ void	close_file(int fd, char *line);
 /************************************ SRC ************************************/
 // EXIT
 void	free_img(t_cub3d *cub3d);
+void	free_mlx(t_cub3d *cub3d);
 int		free_cub3d(t_cub3d *cub3d, int error);
 int		error(int code);
 

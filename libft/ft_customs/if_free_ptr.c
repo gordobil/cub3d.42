@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   if_free.c                                          :+:      :+:    :+:   */
+/*   if_free_ptr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngordobi <ngordobi@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,11 +12,11 @@
 
 #include "../../includes/libft.h"
 
-int	if_free(char *str)
+int	if_free_ptr(void *ptr)
 {
-	if (str)
+	if (ptr)
 	{
-		free(str);
+		free(ptr);
 		return (0);
 	}
 	return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngordobi <ngordobi@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 12:23:09 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/22 13:42:18 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/23 13:33:50 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ int	get_elem_length(int i, char *line)
 void	close_file(int fd, char *line)
 {
 	close(fd);
-	if_free(line);
+	if_free_str(line);
 	get_next_line(-1);
 }
