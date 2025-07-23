@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngordobi <ngordobi@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/22 13:44:00 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/23 11:35:03 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,7 @@ int	main(int argc, char **argv)
 
 /*
 	- texturas
-	- antes de entregar meter los archivos a mano en el Makefile,
-		no se pueden poner comandos de shell al parecer
+	- antes de entregar quitar lo de borrar los zone identifiers del makefile
 */
 
 //valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s

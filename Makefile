@@ -17,13 +17,26 @@ CC_FLAGS			=	-Wall -Wextra -Werror
 MLX_FLAGS			=	-L mlx/ -lmlx -lXext -lX11 -lm
 
 SRC_PATH			=	./src/
+GAME_PATH			=	./src/game/
+PARS_PATH			=	./src/parsing/
 LIBFT_PATH			=	./libft/
 MLX_PATH			=	./mlx/
 
 LIBFT				=	$(LIBFT_PATH)libft.a
 MLX					=	./mlx/libmlx_Linux.a
 
-SOURCES				=	$(shell find $(SRC_PATH) -name "*.c")
+SOURCES				=	$(SRC_PATH)cub3d.c \
+						$(SRC_PATH)exit.c \
+						$(GAME_PATH)draw.c \
+						$(GAME_PATH)minimap.c \
+						$(GAME_PATH)mlx.c \
+						$(GAME_PATH)render_frame.c \
+						$(GAME_PATH)walk.c \
+						$(PARS_PATH)colors.c \
+						$(PARS_PATH)file.c \
+						$(PARS_PATH)map_check.c \
+						$(PARS_PATH)map.c \
+						$(PARS_PATH)parsing_utils.c \
 
 OBJ_DIR				=	.objects/
 OBJECTS				=	$(SOURCES:$(SRC_PATH)%.c=$(OBJ_DIR)%.o)
@@ -75,7 +88,7 @@ $(LIBFT):
 $(MLX):				
 					@make --no-print-directory -s -C $(MLX_PATH) > /dev/null 2>&1
 					@echo "$(WHITE) · Mlx compilation complete.\n"
-					@echo "\n··············· Compilation complete ················"
+					@echo "\n··············· Compilation complete ···············"
 					@echo "$$CUB3D"
 
 clean:
