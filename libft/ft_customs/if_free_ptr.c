@@ -1,40 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix_dup.c                                       :+:      :+:    :+:   */
+/*   if_free_ptr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngordobi <ngordobi@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 12:44:14 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/05/05 11:48:00 by ngordobi         ###   ########.fr       */
+/*   Created: 2025/07/22 12:55:59 by ngordobi          #+#    #+#             */
+/*   Updated: 2025/07/22 12:55:59 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-char	**matrix_dup(char **matrix)
+int	if_free_ptr(void *ptr)
 {
-	char	**dup;
-	int		size;
-	int		i;
-	int		j;
-
-	if (!matrix)
-		return (NULL);
-	size = matrix_size(matrix);
-	dup = malloc((size + 1) * sizeof(char *));
-	if (!dup)
-		return (NULL);
-	i = -1;
-	while (++i < size)
+	if (ptr)
 	{
-		dup[i] = ft_strdup(matrix[i]);
-		if (!dup[i])
-		{
-			dup[i] = NULL;
-			return (free_matrix(dup), NULL);
-		}
+		free(ptr);
+		return (0);
 	}
-	dup[i] = NULL;
-	return (dup);
+	return (1);
 }

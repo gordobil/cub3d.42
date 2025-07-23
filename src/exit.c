@@ -14,28 +14,19 @@
 
 void	free_img(t_cub3d *cub3d)
 {
-	if (cub3d->img->img)
-		free(cub3d->img->img);
-	if (cub3d->img->addr)
-		free(cub3d->img->addr);
-	if (cub3d->img->north)
-		free(cub3d->img->north);
-	if (cub3d->img->south)
-		free(cub3d->img->south);
-	if (cub3d->img->west)
-		free(cub3d->img->west);
-	if (cub3d->img->east)
-		free(cub3d->img->east);
-	if (cub3d->img)
-		free(cub3d->img);
+	if_free_ptr(cub3d->img->img);
+	if_free(cub3d->img->addr);
+	if_free_ptr(cub3d->img->north);
+	if_free_ptr(cub3d->img->south);
+	if_free_ptr(cub3d->img->west);
+	if_free_ptr(cub3d->img->east);
+	if_free_ptr(cub3d->img);
 }
 
 void	free_mlx(t_cub3d *cub3d)
 {
-	if (cub3d->mlx)
-		free(cub3d->mlx);
-	if (cub3d->window)
-		free(cub3d->window);
+	if_free_ptr(cub3d->mlx);
+	if_free_ptr(cub3d->window);
 }
 
 int	free_cub3d(t_cub3d *cub3d, int er)
@@ -43,8 +34,6 @@ int	free_cub3d(t_cub3d *cub3d, int er)
 	int	ret;
 
 	ret = 0;
-	if (cub3d->map_path)
-		free(cub3d->map_path);
 	if (cub3d->elements)
 		ret += free_matrix(cub3d->elements);
 	if (cub3d->map)
@@ -55,7 +44,8 @@ int	free_cub3d(t_cub3d *cub3d, int er)
 		free(cub3d->player);
 	if (cub3d->img)
 		free_img(cub3d);
-	free(cub3d);
+	if (cub3d)
+		free(cub3d);
 	if (ret != 0)
 		return (error(ERROR_FATAL));
 	return (error(er), 0);

@@ -16,6 +16,10 @@ int	close_window(t_cub3d *cub3d)
 {
 	mlx_destroy_window(cub3d->mlx, cub3d->window);
 	mlx_destroy_display(cub3d->mlx);
+	cub3d->img->img = NULL;
+	cub3d->img->addr = NULL;
+	if_free_ptr(cub3d->mlx);
+	free_cub3d(cub3d, 0);
 	exit(0);
 	return (0);
 }
@@ -64,13 +68,13 @@ int	mlx_management(t_cub3d *cub3d)
 	init_img(cub3d->img);
 	cub3d->mlx = mlx_init();
 	if (!cub3d->mlx)
-		return (ERROR_MLX);
+		return (free(cub3d->img), ERROR_MLX);
 	cub3d->window = mlx_new_window(cub3d->mlx, WD, HE, "cub3d");
 	if (!cub3d->window)
-		return (ERROR_MLX);
+		return (free(cub3d->img), free(cub3d->mlx), ERROR_MLX);
 	render_frame(cub3d, cub3d->img);
 	mlx_key_hook(cub3d->window, &handle_input, cub3d);
 	mlx_hook(cub3d->window, 17, 1, close_window, cub3d);
 	mlx_loop(cub3d->mlx);
-	return (free(cub3d->mlx), free(cub3d->window), 0);
+	return (free(cub3d->img), free(cub3d->mlx), free(cub3d->window), 0);
 }

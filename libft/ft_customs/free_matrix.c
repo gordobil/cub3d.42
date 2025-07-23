@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 12:44:14 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/05/07 17:02:50 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/23 12:24:10 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ int	free_matrix(char **matrix)
 		return (-1);
 	i = -1;
 	while (matrix[++i])
-	{
-		if (matrix[i])
-			free(matrix[i]);
-	}
+		if_free(matrix[i]);
 	if (matrix)
 		free(matrix);
 	return (0);
