@@ -68,6 +68,8 @@ typedef struct s_img
 	void		*south;
 	void		*west;
 	void		*east;
+	int		width;
+	int		height;
 }				t_img;
 
 typedef struct s_player
@@ -79,6 +81,23 @@ typedef struct s_player
 	int			f_col;
 	int			c_col;
 }				t_player;
+
+typedef struct s_texture
+{
+	t_img	north;
+	t_img	south;
+	t_img	west;
+	t_img	east;
+}				t_texture;
+
+typedef struct s_ray
+{
+	float	ray_x;
+	float	ray_y;
+	float	angle;
+	char	type;
+	float	distance;
+}				t_ray;
 
 typedef struct s_cub3d
 {
@@ -92,6 +111,11 @@ typedef struct s_cub3d
 //         GAME         //
 	void		*mlx;
 	void		*window;
+	int			sky_size;
+	int			wall_size;
+	int			wall_diff;
+	t_ray		*ray;
+	t_texture	texture;
 	t_player	*player;
 	t_img		*img;
 }				t_cub3d;
@@ -112,6 +136,7 @@ int		mlx_management(t_cub3d *cub3d);
 // RENDER_FRAME
 double	deg_to_rad(double ang);
 int		render_frame(t_cub3d *cub3d, t_img *img);
+void	draw_textures(t_cub3d *cub3d, int x, int y);
 
 // WALK
 int		walk_forwards(t_cub3d *cub3d);
