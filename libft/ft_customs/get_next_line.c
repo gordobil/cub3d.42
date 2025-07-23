@@ -105,7 +105,7 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (fd < 0)
-		return (if_free(buffer), NULL);
+		return (if_free_str(buffer), NULL);
 	buffer = read_text(fd, buffer);
 	if (!buffer)
 		return (NULL);

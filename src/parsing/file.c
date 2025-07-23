@@ -48,7 +48,7 @@ int	elem_manag(char **elem, int flag)
 	{
 		i = -1;
 		while (elem[++i] != NULL && i < 7)
-			if_free(elem[i]);
+			if_free_str(elem[i]);
 		free(elem);
 		elem = NULL;
 	}

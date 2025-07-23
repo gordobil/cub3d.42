@@ -15,7 +15,7 @@
 void	free_img(t_cub3d *cub3d)
 {
 	if_free_ptr(cub3d->img->img);
-	if_free(cub3d->img->addr);
+	if_free_str(cub3d->img->addr);
 	if_free_ptr(cub3d->img->north);
 	if_free_ptr(cub3d->img->south);
 	if_free_ptr(cub3d->img->west);
