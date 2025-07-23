@@ -48,7 +48,7 @@ int	elem_manag(char **elem, int flag)
 	{
 		i = -1;
 		while (elem[++i] != NULL && i < 7)
-			if_free (elem[i]);
+			if_free(elem[i]);
 		free(elem);
 		elem = NULL;
 	}
@@ -85,7 +85,7 @@ int	get_elements(char *line, t_cub3d *cub3d, int i)
 		i = index_update(i, j, line);
 		if (line[i] == '\0' || line[i] == '\n' || line[i] == '\r')
 			return (elem_manag(elem, -1), ERROR_ELEMS);
-		if_free (cub3d->elements[j]);
+		if_free_str(cub3d->elements[j]);
 		temp = ft_substr(line, i, get_elem_length(i, line));
 		cub3d->elements[j] = ft_strdup(temp);
 		free(temp);
@@ -115,7 +115,7 @@ int	check_file(t_cub3d *cub3d)
 			if (ret != 0)
 				break ;
 		}
-		if_free(line);
+		if_free_str(line);
 	}
 	if (ret < 0 || ret == ERROR_ELEMS || ret == ERROR_MAP)
 		return (close_file(cub3d->fd, line), ret);
