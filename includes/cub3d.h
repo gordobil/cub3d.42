@@ -57,20 +57,34 @@
 # define BLUE				0xFF0B5394
 # define BLUE2				0xFF6FA8DC
 
+typedef struct s_ray
+{
+	float		ray_x;
+	float		ray_y;
+	float		angle;
+	char		type;
+	float		distance;
+}				t_ray;
+
 typedef struct s_img
 {
 	void		*img;
 	char		*addr;
+	char		*path;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-	void		*north;
-	void		*south;
-	void		*west;
-	void		*east;
-	int		width;
-	int		height;
+	int			width;
+	int			height;
 }				t_img;
+
+typedef struct s_texture
+{
+	t_img		*north;
+	t_img		*south;
+	t_img		*west;
+	t_img		*east;
+}				t_texture;
 
 typedef struct s_player
 {
@@ -81,23 +95,6 @@ typedef struct s_player
 	int			f_col;
 	int			c_col;
 }				t_player;
-
-typedef struct s_texture
-{
-	t_img	north;
-	t_img	south;
-	t_img	west;
-	t_img	east;
-}				t_texture;
-
-typedef struct s_ray
-{
-	float	ray_x;
-	float	ray_y;
-	float	angle;
-	char	type;
-	float	distance;
-}				t_ray;
 
 typedef struct s_cub3d
 {
@@ -114,10 +111,10 @@ typedef struct s_cub3d
 	int			sky_size;
 	int			wall_size;
 	int			wall_diff;
-	t_ray		*ray;
-	t_texture	texture;
 	t_player	*player;
+	t_texture	*texture;
 	t_img		*img;
+	t_ray		*ray;
 }				t_cub3d;
 
 /*********************************** GAME ************************************/
@@ -137,6 +134,9 @@ int		mlx_management(t_cub3d *cub3d);
 double	deg_to_rad(double ang);
 int		render_frame(t_cub3d *cub3d, t_img *img);
 void	draw_textures(t_cub3d *cub3d, int x, int y);
+
+// RENDER_TEXT
+int		load_texture(t_img *t, void *mlx);
 
 // WALK
 int		walk_forwards(t_cub3d *cub3d);
@@ -166,7 +166,7 @@ void	close_file(int fd, char *line);
 
 /************************************ SRC ************************************/
 // EXIT
-void	free_img(t_cub3d *cub3d);
+void	free_img(t_img *img);
 void	free_mlx(t_cub3d *cub3d);
 int		free_cub3d(t_cub3d *cub3d, int error);
 int		error(int code);

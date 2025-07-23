@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/23 13:06:28 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/23 14:43:48 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int	init_cub3d(t_cub3d *cub3d)
 	cub3d->mlx = NULL;
 	cub3d->window = NULL;
 	cub3d->player = NULL;
+	cub3d->texture = NULL;
+	cub3d->ray = NULL;
 	cub3d->img = NULL;
 	return (0);
 }
@@ -87,3 +89,4 @@ int	main(int argc, char **argv)
 */
 
 //valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s
+//-fsanitize=address

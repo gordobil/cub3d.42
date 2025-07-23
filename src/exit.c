@@ -12,15 +12,24 @@
 
 #include "../includes/cub3d.h"
 
-void	free_img(t_cub3d *cub3d)
+void	free_img(t_img *img)
 {
-	if_free_ptr(cub3d->img->img);
-	if_free_str(cub3d->img->addr);
-	if_free_ptr(cub3d->img->north);
-	if_free_ptr(cub3d->img->south);
-	if_free_ptr(cub3d->img->west);
-	if_free_ptr(cub3d->img->east);
-	if_free_ptr(cub3d->img);
+	if_free_ptr(img->img);
+	if_free_str(img->addr);
+	if_free_ptr(img);
+}
+
+void	free_texture(t_cub3d *cub3d)
+{
+	if (cub3d->texture->north)
+		free_img(cub3d->texture->north);
+	if (cub3d->texture->south)
+		free_img(cub3d->texture->south);
+	if (cub3d->texture->west)
+		free_img(cub3d->texture->west);
+	if (cub3d->texture->east)
+		free_img(cub3d->texture->east);
+	if_free_ptr(cub3d->texture);
 }
 
 void	free_mlx(t_cub3d *cub3d)
@@ -40,10 +49,11 @@ int	free_cub3d(t_cub3d *cub3d, int er)
 		ret += free_matrix(cub3d->map);
 	if (er == ERROR_MLX || er == ERROR_TEXTURES)
 		free_mlx(cub3d);
-	if (cub3d->player)
-		free(cub3d->player);
+	if_free_ptr(cub3d->player);
 	if (cub3d->img)
-		free_img(cub3d);
+		free_img(cub3d->img);
+	if (cub3d->texture)
+		free_texture(cub3d);
 	if (cub3d)
 		free(cub3d);
 	if (ret != 0)
