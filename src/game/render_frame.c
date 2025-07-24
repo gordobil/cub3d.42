@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/24 13:43:35 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/24 13:49:12 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,21 +61,26 @@ double	cast_single_ray(t_cub3d *cub3d, t_ray *ray, double angle)
 int	render_frame(t_cub3d *cub3d, t_img *img, t_ray *ray)
 {
 	int		x;
-	int		draw_start, draw_end;
+	int		draw_start;
+	int		draw_end;
 
 	x = -1;
 	img_management(cub3d, img, 0);
 	while (++x < WD)
 	{
 		ray->angle = cub3d->player->ang - 30 + (x * (60.0 / WD));
-		if (ray->angle < 0) ray->angle += 360;
-		else if (ray->angle >= 360) ray->angle -= 360;
+		if (ray->angle < 0)
+			ray->angle += 360;
+		else if (ray->angle >= 360)
+			ray->angle -= 360;
 		ray->distance = cast_single_ray(cub3d, cub3d->ray, ray->angle)
 			* cos(deg_to_rad(ray->angle - cub3d->player->ang));
 		draw_start = (HE / 2) - (((int)((SQ * HE) / ray->distance)) / 2);
 		draw_end = (HE / 2) + (((int)((SQ * HE) / ray->distance)) / 2);
-		if (draw_start < 0) draw_start = 0;
-		if (draw_end >= HE) draw_end = HE - 1;
+		if (draw_start < 0)
+			draw_start = 0;
+		if (draw_end >= HE)
+			draw_end = HE - 1;
 		draw_vertical_line(cub3d, x, draw_start, draw_end);
 	}
 	img_management(cub3d, img, 1);
