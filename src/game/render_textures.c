@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/23 14:43:16 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/24 12:11:33 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	draw_texture_pixel(t_cub3d *cub3d, t_img *texture, int x, int y, int tx)
 void	draw_north_texture(t_cub3d *cub3d, int x, int y)
 {
 	int texture_width = cub3d->texture->north->width - 1;
-	int tx = (int)(cub3d->ray[x].ray_x * texture_width / SQ);
+	int tx = (int)(cub3d->ray[x].rx * texture_width / SQ);
 	tx = tx % texture_width;
 
 	draw_texture_pixel(cub3d, cub3d->texture->north, x, y, tx);
@@ -56,7 +56,7 @@ void	draw_north_texture(t_cub3d *cub3d, int x, int y)
 void	draw_south_texture(t_cub3d *cub3d, int x, int y)
 {
 	int texture_width = cub3d->texture->south->width - 1;
-	int tx = (int)(cub3d->ray[x].ray_x * texture_width / SQ);
+	int tx = (int)(cub3d->ray[x].rx * texture_width / SQ);
 	tx = texture_width - (tx % texture_width);
 
 	draw_texture_pixel(cub3d, cub3d->texture->south, x, y, tx);
@@ -66,7 +66,7 @@ void	draw_south_texture(t_cub3d *cub3d, int x, int y)
 void	draw_west_texture(t_cub3d *cub3d, int x, int y)
 {
 	int texture_width = cub3d->texture->west->width - 1;
-	int tx = (int)(cub3d->ray[x].ray_y * texture_width / SQ);
+	int tx = (int)(cub3d->ray[x].ry * texture_width / SQ);
 	tx = texture_width - (tx % texture_width);
 
 	draw_texture_pixel(cub3d, cub3d->texture->west, x, y, tx);
@@ -76,7 +76,7 @@ void	draw_west_texture(t_cub3d *cub3d, int x, int y)
 void	draw_east_texture(t_cub3d *cub3d, int x, int y)
 {
 	int texture_width = cub3d->texture->east->width - 1;
-	int tx = (int)(cub3d->ray[x].ray_y * texture_width / SQ);
+	int tx = (int)(cub3d->ray[x].ry * texture_width / SQ);
 	tx = tx % texture_width;
 
 	draw_texture_pixel(cub3d, cub3d->texture->east, x, y, tx);

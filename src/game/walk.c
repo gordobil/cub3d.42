@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walk.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngordobi <ngordobi@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/22 11:39:53 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/24 12:12:12 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	walk_forwards(t_cub3d *cub3d)
 	{
 		cub3d->player->x = new_x;
 		cub3d->player->y = new_y;
+		cub3d->ray->type = 'h';
 		return (0);
 	}
 	return (1);
@@ -62,6 +63,7 @@ int	walk_backwards(t_cub3d *cub3d)
 	{
 		cub3d->player->x = new_x;
 		cub3d->player->y = new_y;
+		cub3d->ray->type = 'h';
 		return (0);
 	}
 	return (1);
@@ -80,6 +82,7 @@ int	walk_right(t_cub3d *cub3d)
 	{
 		cub3d->player->x = new_x;
 		cub3d->player->y = new_y;
+		cub3d->ray->type = 'v';
 		return (0);
 	}
 	return (1);
@@ -98,6 +101,7 @@ int	walk_left(t_cub3d *cub3d)
 	{
 		cub3d->player->x = new_x;
 		cub3d->player->y = new_y;
+		cub3d->ray->type = 'v';
 		return (0);
 	}
 	return (1);

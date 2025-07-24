@@ -59,9 +59,9 @@
 
 typedef struct s_ray
 {
-	float		ray_x;
-	float		ray_y;
-	float		angle;
+	double		rx;
+	double		ry;
+	double		angle;
 	char		type;
 	float		distance;
 }				t_ray;
@@ -132,7 +132,7 @@ int		mlx_management(t_cub3d *cub3d);
 
 // RENDER_FRAME
 double	deg_to_rad(double ang);
-int		render_frame(t_cub3d *cub3d, t_img *img);
+int		render_frame(t_cub3d *cub3d, t_img *img, t_ray *ray);
 void	draw_textures(t_cub3d *cub3d, int x, int y);
 
 // RENDER_TEXT

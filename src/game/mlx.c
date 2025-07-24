@@ -45,8 +45,9 @@ int	handle_input(int keysym, t_cub3d *cub3d)
 		wall = walk_right(cub3d);
 	else if (keysym == A)
 		wall = walk_left(cub3d);
+	ft_printf("ang[%d] wall[%d]\n", old_ang, wall);
 	if (cub3d->player->ang != old_ang || wall == 0)
-		render_frame(cub3d, cub3d->img);
+		render_frame(cub3d, cub3d->img, cub3d->ray);
 	return (0);
 }
 
@@ -105,19 +106,21 @@ int	init_textures(t_cub3d *cub3d)
 
 int	mlx_management(t_cub3d *cub3d)
 {
-	cub3d->img = malloc(sizeof(t_img));
-	if (!cub3d->img)
-		return (ERROR_FATAL);
-	init_img(cub3d->img);
 	cub3d->mlx = mlx_init();
 	if (!cub3d->mlx)
 		return (ERROR_MLX);
 	cub3d->window = mlx_new_window(cub3d->mlx, WD, HE, "cub3d");
 	if (!cub3d->window)
 		return (ERROR_MLX);
+	cub3d->img = malloc(sizeof(t_img));
+	cub3d->ray = malloc(sizeof(t_ray));
+	if (!cub3d->img || !cub3d->ray)
+		return (ERROR_FATAL);
+	init_img(cub3d->img);
 	if (init_textures(cub3d) != 0)
-		return (init_textures(cub3d));
-	render_frame(cub3d, cub3d->img);
+		return (ERROR_TEXTURES);
+	cub3d->ray->type = 'h';
+	render_frame(cub3d, cub3d->img, cub3d->ray);
 	mlx_key_hook(cub3d->window, &handle_input, cub3d);
 	mlx_hook(cub3d->window, 17, 1, close_window, cub3d);
 	mlx_loop(cub3d->mlx);
