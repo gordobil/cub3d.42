@@ -165,7 +165,6 @@ void	close_file(int fd, char *line);
 
 /************************************ SRC ************************************/
 // EXIT
-void	free_img(t_img *img);
 int		destroy_textures(t_cub3d *cub3d, int t);
 int		free_cub3d(t_cub3d *cub3d, int error);
 int		error(int code);
