@@ -45,7 +45,6 @@ int	handle_input(int keysym, t_cub3d *cub3d)
 		wall = walk_right(cub3d);
 	else if (keysym == A)
 		wall = walk_left(cub3d);
-	ft_printf("ang[%d] wall[%d]\n", old_ang, wall);
 	if (cub3d->player->ang != old_ang || wall == 0)
 		render_frame(cub3d, cub3d->img, cub3d->ray);
 	return (0);
