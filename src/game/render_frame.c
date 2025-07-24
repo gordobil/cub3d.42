@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/14 13:19:22 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/24 12:29:02 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,54 +34,55 @@ void	img_management(t_cub3d *cub3d, t_img *img, int mark)
 	}
 }
 
-double	cast_single_ray(t_cub3d *cub3d, double angle)
+double	cast_single_ray(t_cub3d *cub3d, t_ray *ray, double angle)
 {
-	double	x;
-	double	y;
 	double	step;
 	int		map_x;
 	int		map_y;
 
-	x = cub3d->player->x;
-	y = cub3d->player->y;
+	ray->rx = cub3d->player->x;
+	ray->ry = cub3d->player->y;
 	step = 1.0;
 	while (1)
 	{
-		map_x = (int)(x / SQ);
-		map_y = (int)(y / SQ);
+		map_x = (int)(ray->rx / SQ);
+		map_y = (int)(ray->ry / SQ);
 		if (map_y < 0 || map_y >= matrix_size(cub3d->map)
 			|| map_x < 0 || map_x >= (int)ft_strlen(cub3d->map[map_y])
 			|| cub3d->map[map_y][map_x] == '1')
 			break ;
-		x += cos(deg_to_rad(angle)) * step;
-		y += sin(deg_to_rad(angle)) * step;
+		ray->rx += cos(deg_to_rad(angle)) * step;
+		ray->ry += sin(deg_to_rad(angle)) * step;
 	}
-	return (sqrt((x - cub3d->player->x) * (x - cub3d->player->x)
-			+ (y - cub3d->player->y) * (y - cub3d->player->y)));
+	return (sqrt((ray->rx - cub3d->player->x) * (ray->rx - cub3d->player->x)
+			+ (ray->ry - cub3d->player->y) * (ray->ry - cub3d->player->y)));
 }
 
-int	render_frame(t_cub3d *cub3d, t_img *img)
+int	render_frame(t_cub3d *cub3d, t_img *img, t_ray *ray)
 {
 	int		x;
-	double	ray_angle;
-	double	distance;
-	int		draw_start;
-	int		draw_end;
+	int		y;
+	int		draw_start, draw_end;
 
 	x = -1;
 	img_management(cub3d, img, 0);
 	while (++x < WD)
 	{
-		ray_angle = cub3d->player->ang - 30 + (x * (60.0 / WD));
-		if (ray_angle < 0)
-			ray_angle += 360;
-		else if (ray_angle >= 360)
-			ray_angle -= 360;
-		distance = cast_single_ray(cub3d, ray_angle)
-			* cos(deg_to_rad(ray_angle - cub3d->player->ang));
-		draw_start = (HE / 2) - (((int)((SQ * HE) / distance)) / 2);
-		draw_end = (HE / 2) + (((int)((SQ * HE) / distance)) / 2);
-		draw_vertical_line(cub3d, x, draw_start, draw_end);
+		ray->angle = cub3d->player->ang - 30 + (x * (60.0 / WD));
+		if (ray->angle < 0) ray->angle += 360;
+		else if (ray->angle >= 360) ray->angle -= 360;
+		ray->distance = cast_single_ray(cub3d, cub3d->ray, ray->angle)
+			* cos(deg_to_rad(ray->angle - cub3d->player->ang));
+		draw_start = (HE / 2) - (((int)((SQ * HE) / ray->distance)) / 2);
+		draw_end = (HE / 2) + (((int)((SQ * HE) / ray->distance)) / 2);
+		if (draw_start < 0) draw_start = 0;
+		if (draw_end >= HE) draw_end = HE - 1;
+		y = draw_start;
+		while (y < draw_end)
+		{
+			draw_textures(cub3d, x, y);
+			y++;
+		}
 	}
 	img_management(cub3d, img, 1);
 	return (0);

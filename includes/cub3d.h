@@ -57,18 +57,34 @@
 # define BLUE				0xFF0B5394
 # define BLUE2				0xFF6FA8DC
 
+typedef struct s_ray
+{
+	double		rx;
+	double		ry;
+	double		angle;
+	char		type;
+	float		distance;
+}				t_ray;
+
 typedef struct s_img
 {
 	void		*img;
 	char		*addr;
+	char		*path;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-	void		*north;
-	void		*south;
-	void		*west;
-	void		*east;
+	int			width;
+	int			height;
 }				t_img;
+
+typedef struct s_texture
+{
+	t_img		*north;
+	t_img		*south;
+	t_img		*west;
+	t_img		*east;
+}				t_texture;
 
 typedef struct s_player
 {
@@ -92,8 +108,13 @@ typedef struct s_cub3d
 //         GAME         //
 	void		*mlx;
 	void		*window;
+	int			sky_size;
+	int			wall_size;
+	int			wall_diff;
 	t_player	*player;
+	t_texture	*texture;
 	t_img		*img;
+	t_ray		*ray;
 }				t_cub3d;
 
 /*********************************** GAME ************************************/
