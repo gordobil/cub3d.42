@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/24 12:29:02 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/24 13:43:35 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ double	cast_single_ray(t_cub3d *cub3d, t_ray *ray, double angle)
 int	render_frame(t_cub3d *cub3d, t_img *img, t_ray *ray)
 {
 	int		x;
-	int		y;
 	int		draw_start, draw_end;
 
 	x = -1;
@@ -77,12 +76,7 @@ int	render_frame(t_cub3d *cub3d, t_img *img, t_ray *ray)
 		draw_end = (HE / 2) + (((int)((SQ * HE) / ray->distance)) / 2);
 		if (draw_start < 0) draw_start = 0;
 		if (draw_end >= HE) draw_end = HE - 1;
-		y = draw_start;
-		while (y < draw_end)
-		{
-			draw_textures(cub3d, x, y);
-			y++;
-		}
+		draw_vertical_line(cub3d, x, draw_start, draw_end);
 	}
 	img_management(cub3d, img, 1);
 	return (0);

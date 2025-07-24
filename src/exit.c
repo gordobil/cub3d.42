@@ -12,30 +12,43 @@
 
 #include "../includes/cub3d.h"
 
-void	free_img(t_img *img)
+int	destroy_textures(t_cub3d *cub3d, int t)
 {
-	if_free_ptr(img->img);
-	if_free_str(img->addr);
-	if_free_ptr(img);
+	if (t == 1)
+		mlx_destroy_image(cub3d->mlx, cub3d->texture->north->img);
+	else if (t == 2)
+	{
+		mlx_destroy_image(cub3d->mlx, cub3d->texture->north->img);
+		mlx_destroy_image(cub3d->mlx, cub3d->texture->south->img);
+	}
+	else if (t == 3)
+	{
+		mlx_destroy_image(cub3d->mlx, cub3d->texture->north->img);
+		mlx_destroy_image(cub3d->mlx, cub3d->texture->south->img);
+		mlx_destroy_image(cub3d->mlx, cub3d->texture->west->img);
+	}
+	else if (t == 4)
+	{
+		mlx_destroy_image(cub3d->mlx, cub3d->texture->north->img);
+		mlx_destroy_image(cub3d->mlx, cub3d->texture->south->img);
+		mlx_destroy_image(cub3d->mlx, cub3d->texture->west->img);
+		mlx_destroy_image(cub3d->mlx, cub3d->texture->east->img);
+		return (0);
+	}
+	return (ERROR_TEXTURES);
 }
 
 void	free_texture(t_cub3d *cub3d)
 {
-	if (cub3d->texture->north)
-		free_img(cub3d->texture->north);
-	if (cub3d->texture->south)
-		free_img(cub3d->texture->south);
-	if (cub3d->texture->west)
-		free_img(cub3d->texture->west);
-	if (cub3d->texture->east)
-		free_img(cub3d->texture->east);
+	if_free_str(cub3d->texture->north->path);
+	if_free_ptr(cub3d->texture->north);
+	if_free_str(cub3d->texture->south->path);
+	if_free_ptr(cub3d->texture->south);
+	if_free_str(cub3d->texture->west->path);
+	if_free_ptr(cub3d->texture->west);
+	if_free_str(cub3d->texture->east->path);
+	if_free_ptr(cub3d->texture->east);
 	if_free_ptr(cub3d->texture);
-}
-
-void	free_mlx(t_cub3d *cub3d)
-{
-	if_free_ptr(cub3d->mlx);
-	if_free_ptr(cub3d->window);
 }
 
 int	free_cub3d(t_cub3d *cub3d, int er)
@@ -47,13 +60,11 @@ int	free_cub3d(t_cub3d *cub3d, int er)
 		ret += free_matrix(cub3d->elements);
 	if (cub3d->map)
 		ret += free_matrix(cub3d->map);
-	if (er == ERROR_MLX || er == ERROR_TEXTURES)
-		free_mlx(cub3d);
 	if_free_ptr(cub3d->player);
-	if (cub3d->img)
-		free_img(cub3d->img);
+	if_free_ptr(cub3d->img);
 	if (cub3d->texture)
 		free_texture(cub3d);
+	if_free_ptr(cub3d->ray);
 	if (cub3d)
 		free(cub3d);
 	if (ret != 0)

@@ -124,6 +124,9 @@ void	draw_vertical_line(t_cub3d *cub3d, int x, int start, int end);
 void	draw_square(t_cub3d *cub3d, int x, int y, int color);
 void	draw_pointer(t_cub3d *cub3d);
 
+// INIT_TEXTURES
+int		init_textures(t_cub3d *cub3d);
+
 // MINIMAP
 void	draw_minimap(t_cub3d *cub3d);
 
@@ -132,7 +135,7 @@ int		mlx_management(t_cub3d *cub3d);
 
 // RENDER_FRAME
 double	deg_to_rad(double ang);
-int		render_frame(t_cub3d *cub3d, t_img *img);
+int		render_frame(t_cub3d *cub3d, t_img *img, t_ray *ray);
 
 // WALK
 int		walk_forwards(t_cub3d *cub3d);
@@ -162,8 +165,8 @@ void	close_file(int fd, char *line);
 
 /************************************ SRC ************************************/
 // EXIT
-void	free_img(t_cub3d *cub3d);
-void	free_mlx(t_cub3d *cub3d);
+void	free_img(t_img *img);
+int		destroy_textures(t_cub3d *cub3d, int t);
 int		free_cub3d(t_cub3d *cub3d, int error);
 int		error(int code);
 

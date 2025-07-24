@@ -28,6 +28,7 @@ MLX					=	./mlx/libmlx_Linux.a
 SOURCES				=	$(SRC_PATH)cub3d.c \
 						$(SRC_PATH)exit.c \
 						$(GAME_PATH)draw.c \
+						$(GAME_PATH)init_textures.c \
 						$(GAME_PATH)minimap.c \
 						$(GAME_PATH)mlx.c \
 						$(GAME_PATH)render_frame.c \

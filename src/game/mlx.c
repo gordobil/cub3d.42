@@ -14,6 +14,7 @@
 
 int	close_window(t_cub3d *cub3d)
 {
+	destroy_textures(cub3d, 4);
 	mlx_destroy_window(cub3d->mlx, cub3d->window);
 	mlx_destroy_display(cub3d->mlx);
 	cub3d->img->img = NULL;
@@ -46,83 +47,32 @@ int	handle_input(int keysym, t_cub3d *cub3d)
 	else if (keysym == A)
 		wall = walk_left(cub3d);
 	if (cub3d->player->ang != old_ang || wall == 0)
-		render_frame(cub3d, cub3d->img);
-	return (0);
-}
-
-int	load_texture(t_img *t, void *mlx)
-{
-	t->img = mlx_xpm_file_to_image(mlx, t->path, &t->width, &t->height);
-	if (!t->img)
-		return (ERROR_TEXTURES);
-	t->addr = mlx_get_data_addr(t->img, &t->bits_per_pixel,
-			&t->line_length, &t->endian);
-	if (!t->addr)
-		return (ERROR_TEXTURES);
-	return (0);
-}
-
-void	init_img(t_img *img)
-{
-	img->img = NULL;
-	img->addr = NULL;
-	img->path = NULL;
-}
-
-int	init_textures(t_cub3d *cub3d)
-{
-	cub3d->texture = malloc(sizeof(t_texture));
-	if (!cub3d->texture)
-		return (ERROR_FATAL);
-	cub3d->texture->north = NULL;
-	cub3d->texture->south = NULL;
-	cub3d->texture->west = NULL;
-	cub3d->texture->east = NULL;
-	cub3d->texture->north = malloc(sizeof(t_img));
-	cub3d->texture->south = malloc(sizeof(t_img));
-	cub3d->texture->west = malloc(sizeof(t_img));
-	cub3d->texture->east = malloc(sizeof(t_img));
-	if (!cub3d->texture->north || !cub3d->texture->south
-		|| !cub3d->texture->west || !cub3d->texture->east)
-		return (ERROR_FATAL);
-	init_img(cub3d->texture->north);
-	init_img(cub3d->texture->south);
-	init_img(cub3d->texture->west);
-	init_img(cub3d->texture->east);
-	cub3d->texture->north->path = ft_strdup(cub3d->elements[0]);
-	cub3d->texture->south->path = ft_strdup(cub3d->elements[1]);
-	cub3d->texture->west->path = ft_strdup(cub3d->elements[2]);
-	cub3d->texture->east->path = ft_strdup(cub3d->elements[3]);
-	if (!cub3d->texture->north->path || !cub3d->texture->south->path
-		|| !cub3d->texture->west->path || !cub3d->texture->east->path)
-		return (ERROR_FATAL);
-	if (load_texture(cub3d->texture->north, cub3d->mlx) != 0
-		|| load_texture(cub3d->texture->south, cub3d->mlx) != 0
-		|| load_texture(cub3d->texture->west, cub3d->mlx) != 0
-		|| load_texture(cub3d->texture->east, cub3d->mlx) != 0)
-		return (ERROR_TEXTURES);
+		render_frame(cub3d, cub3d->img, cub3d->ray);
 	return (0);
 }
 
 int	mlx_management(t_cub3d *cub3d)
 {
-	cub3d->mlx = mlx_init();
-	if (!cub3d->mlx)
-		return (ERROR_MLX);
-	cub3d->window = mlx_new_window(cub3d->mlx, WD, HE, "cub3d");
-	if (!cub3d->window)
-		return (ERROR_MLX);
 	cub3d->img = malloc(sizeof(t_img));
 	cub3d->ray = malloc(sizeof(t_ray));
 	if (!cub3d->img || !cub3d->ray)
 		return (ERROR_FATAL);
-	init_img(cub3d->img);
+	cub3d->mlx = mlx_init();
+	if (!cub3d->mlx)
+		return (ERROR_MLX);
 	if (init_textures(cub3d) != 0)
-		return (ERROR_TEXTURES);
+		return (mlx_destroy_display(cub3d->mlx), if_free_ptr(cub3d->mlx),
+			ERROR_TEXTURES);
+	cub3d->window = mlx_new_window(cub3d->mlx, WD, HE, "cub3d");
+	if (!cub3d->window)
+		return (mlx_destroy_display(cub3d->mlx), destroy_textures(cub3d, 4),
+			if_free_ptr(cub3d->mlx), ERROR_MLX);
 	cub3d->ray->type = 'h';
 	render_frame(cub3d, cub3d->img, cub3d->ray);
 	mlx_key_hook(cub3d->window, &handle_input, cub3d);
 	mlx_hook(cub3d->window, 17, 1, close_window, cub3d);
 	mlx_loop(cub3d->mlx);
-	return (0);
+	return (mlx_destroy_display(cub3d->mlx),
+		mlx_destroy_window(cub3d->mlx, cub3d->window),
+		if_free_ptr(cub3d->mlx), if_free_ptr(cub3d->window), 0);
 }
