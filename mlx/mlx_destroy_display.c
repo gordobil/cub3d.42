@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_matrix.c                                      :+:      :+:    :+:   */
+/*   mlx_destroy_display.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 12:44:14 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/23 13:43:24 by ngordobi         ###   ########.fr       */
+/*   Created: 2020/10/03 18:56:35 by mg                #+#    #+#             */
+/*   Updated: 2020/10/04 01:55:35 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "mlx_int.h"
 
-int	free_matrix(char **matrix)
+int	mlx_destroy_display(t_xvar *xvar)
 {
-	int	i;
-
-	if (!matrix)
-		return (-1);
-	i = -1;
-	while (matrix[++i])
-		if_free_str(matrix[i]);
-	if (matrix)
-		free(matrix);
-	return (0);
+	XCloseDisplay(xvar->display);
 }

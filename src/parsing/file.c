@@ -89,8 +89,7 @@ int	get_elements(char *line, t_cub3d *cub3d, int i)
 		temp = ft_substr(line, i, get_elem_length(i, line));
 		cub3d->elements[j] = ft_strdup(temp);
 		free(temp);
-		j++;
-		return (elem_manag(elem, -1), 0);
+		return (j++, elem_manag(elem, -1), 0);
 	}
 	return (elem_manag(elem, -1), ERROR_ELEMS);
 }

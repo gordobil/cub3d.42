@@ -1,7 +1,7 @@
-NO ./Ladrillo.xpm
-SO ./LadrilloRoto.xpm
-WE ./Roca.xpm
-EA ./Roca2.xpm
+NO ./textures/Ladrillo.xpm
+SO ./textures/LadrilloRoto.xpm
+WE ./textures/Roca.xpm
+EA ./textures/Roca2.xpm
 
 F 11,83,148
 C 111,168,220
