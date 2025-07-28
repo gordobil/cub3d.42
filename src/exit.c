@@ -80,8 +80,10 @@ int	error(int code)
 		ft_printf("Error\nFatal\n");
 	else if (code == ERROR_ARGS)
 		ft_printf("Error\nInvalid arguments\n");
-	else if (code == ERROR_ELEMS || code == ERROR_TEXTURES)
+	else if (code == ERROR_ELEMS)
 		ft_printf("Error\nInvalid file elements\n");
+	else if (code == ERROR_TEXTURES)
+		ft_printf("Error\nTexture error\n");
 	else if (code == ERROR_MAP)
 		ft_printf("Error\nInvalid map\n");
 	else if (code == ERROR_MLX)
