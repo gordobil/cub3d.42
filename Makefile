@@ -25,9 +25,7 @@ MLX_PATH			=	./mlx/
 LIBFT				=	$(LIBFT_PATH)libft.a
 MLX					=	./mlx/libmlx_Linux.a
 
-SOURCES				=	$(SRC_PATH)cub3d.c \
-						$(SRC_PATH)exit.c \
-						$(GAME_PATH)draw.c \
+SOURCES				=	$(GAME_PATH)draw.c \
 						$(GAME_PATH)init_textures.c \
 						$(GAME_PATH)minimap.c \
 						$(GAME_PATH)mlx.c \
@@ -38,6 +36,8 @@ SOURCES				=	$(SRC_PATH)cub3d.c \
 						$(PARS_PATH)map_check.c \
 						$(PARS_PATH)map.c \
 						$(PARS_PATH)parsing_utils.c \
+						$(SRC_PATH)cub3d.c \
+						$(SRC_PATH)exit.c \
 
 OBJ_DIR				=	.objects/
 OBJECTS				=	$(SOURCES:$(SRC_PATH)%.c=$(OBJ_DIR)%.o)
