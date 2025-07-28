@@ -27,7 +27,7 @@
 # define SQ					32
 # define HE					720
 # define WD					1280
-# define MINI_SCALE			0.2
+# define MINI_SCALE			0.4
 # define M_PI 				3.14159265358979323846
 
 // KEYS
@@ -105,6 +105,13 @@ typedef struct s_cub3d
 	char		start_pos;
 	int			start_y;
 	int			start_x;
+//         KEYS         //
+	int			w_key;
+	int			s_key;
+	int			a_key;
+	int			d_key;
+	int			r_key;
+	int			l_key;
 //         GAME         //
 	void		*mlx;
 	void		*window;

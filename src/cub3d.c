@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/28 19:23:46 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/28 20:48:52 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	init_player(t_cub3d *cub3d)
 		return (ERROR_FATAL);
 	cub3d->player->x = (cub3d->start_x * SQ) - (SQ / 2);
 	cub3d->player->y = (cub3d->start_y * SQ) - (SQ / 2);
-	cub3d->player->speed = 1;
+	cub3d->player->speed = 2;
 	if (cub3d->start_pos == 'N')
 		cub3d->player->ang = 270;
 	else if (cub3d->start_pos == 'S')
@@ -54,6 +54,12 @@ int	init_cub3d(t_cub3d *cub3d)
 	cub3d->player = NULL;
 	cub3d->texture = NULL;
 	cub3d->img = NULL;
+	cub3d->w_key = 0;
+	cub3d->s_key = 0;
+	cub3d->a_key = 0;
+	cub3d->d_key = 0;
+	cub3d->r_key = 0;
+	cub3d->l_key = 0;
 	return (0);
 }
 
