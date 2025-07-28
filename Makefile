@@ -13,7 +13,7 @@
 NAME				=	cub3d
 
 CC					=	gcc
-CC_FLAGS			=	-Wall -Wextra -Werror 
+CC_FLAGS			=	-Wall -Wextra -Werror -fsanitize=address
 MLX_FLAGS			=	-L mlx/ -lmlx -lXext -lX11 -lm
 
 SRC_PATH			=	./src/
@@ -30,6 +30,7 @@ SOURCES				=	$(GAME_PATH)draw.c \
 						$(GAME_PATH)minimap.c \
 						$(GAME_PATH)mlx.c \
 						$(GAME_PATH)render_frame.c \
+						$(GAME_PATH)render_textures.c \
 						$(GAME_PATH)walk.c \
 						$(PARS_PATH)colors.c \
 						$(PARS_PATH)file.c \

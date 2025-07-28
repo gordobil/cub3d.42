@@ -114,7 +114,7 @@ typedef struct s_cub3d
 	t_player	*player;
 	t_texture	*texture;
 	t_img		*img;
-	t_ray		*ray;
+	t_ray		ray[WD];
 }				t_cub3d;
 
 /*********************************** GAME ************************************/
@@ -126,6 +126,7 @@ void	draw_pointer(t_cub3d *cub3d);
 
 // INIT_TEXTURES
 int		init_textures(t_cub3d *cub3d);
+int		load_texture(t_img *t, void *mlx);
 
 // MINIMAP
 void	draw_minimap(t_cub3d *cub3d);
@@ -136,6 +137,9 @@ int		mlx_management(t_cub3d *cub3d);
 // RENDER_FRAME
 double	deg_to_rad(double ang);
 int		render_frame(t_cub3d *cub3d, t_img *img, t_ray *ray);
+
+// RENDER_TEXTURES
+void	draw_textures(t_cub3d *cub3d, int x, int y);
 
 // WALK
 int		walk_forwards(t_cub3d *cub3d);

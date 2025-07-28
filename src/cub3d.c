@@ -53,7 +53,6 @@ int	init_cub3d(t_cub3d *cub3d)
 	cub3d->window = NULL;
 	cub3d->player = NULL;
 	cub3d->texture = NULL;
-	cub3d->ray = NULL;
 	cub3d->img = NULL;
 	return (0);
 }
