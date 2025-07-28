@@ -54,8 +54,7 @@ int	handle_input(int keysym, t_cub3d *cub3d)
 int	mlx_management(t_cub3d *cub3d)
 {
 	cub3d->img = malloc(sizeof(t_img));
-	cub3d->ray = malloc(sizeof(t_ray));
-	if (!cub3d->img || !cub3d->ray)
+	if (!cub3d->img)
 		return (ERROR_FATAL);
 	cub3d->mlx = mlx_init();
 	if (!cub3d->mlx)
@@ -67,7 +66,6 @@ int	mlx_management(t_cub3d *cub3d)
 	if (!cub3d->window)
 		return (mlx_destroy_display(cub3d->mlx), destroy_textures(cub3d, 4),
 			if_free_ptr(cub3d->mlx), ERROR_MLX);
-	cub3d->ray->type = 'h';
 	render_frame(cub3d, cub3d->img, cub3d->ray);
 	mlx_key_hook(cub3d->window, &handle_input, cub3d);
 	mlx_hook(cub3d->window, 17, 1, close_window, cub3d);

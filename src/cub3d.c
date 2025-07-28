@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/24 12:30:33 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/28 19:23:46 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	init_cub3d(t_cub3d *cub3d)
 	cub3d->window = NULL;
 	cub3d->player = NULL;
 	cub3d->texture = NULL;
-	cub3d->ray = NULL;
 	cub3d->img = NULL;
 	return (0);
 }
