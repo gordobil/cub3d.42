@@ -27,7 +27,7 @@
 # define SQ					32
 # define HE					720
 # define WD					1280
-# define MINI_SCALE			0.2
+# define MINI_SCALE			0.3	
 # define M_PI 				3.14159265358979323846
 
 // KEYS
@@ -90,7 +90,7 @@ typedef struct s_player
 {
 	double		x;
 	double		y;
-	int			ang;
+	double		ang;
 	int			speed;
 	int			f_col;
 	int			c_col;
@@ -105,6 +105,13 @@ typedef struct s_cub3d
 	char		start_pos;
 	int			start_y;
 	int			start_x;
+//         KEYS         //
+	int			w_key;
+	int			s_key;
+	int			a_key;
+	int			d_key;
+	int			r_key;
+	int			l_key;
 //         GAME         //
 	void		*mlx;
 	void		*window;
@@ -124,6 +131,10 @@ void	draw_vertical_line(t_cub3d *cub3d, int x, int start, int end);
 void	draw_square(t_cub3d *cub3d, int x, int y, int color);
 void	draw_pointer(t_cub3d *cub3d);
 
+// GAME_UTILS
+double	deg_to_rad(double ang);
+void	get_angle(t_cub3d *cub3d, char sign);
+
 // INIT_TEXTURES
 int		init_textures(t_cub3d *cub3d);
 int		load_texture(t_img *t, void *mlx);
@@ -135,7 +146,6 @@ void	draw_minimap(t_cub3d *cub3d);
 int		mlx_management(t_cub3d *cub3d);
 
 // RENDER_FRAME
-double	deg_to_rad(double ang);
 int		render_frame(t_cub3d *cub3d, t_img *img, t_ray *ray);
 
 // RENDER_TEXTURES

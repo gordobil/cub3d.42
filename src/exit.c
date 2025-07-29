@@ -64,7 +64,7 @@ int	free_cub3d(t_cub3d *cub3d, int er)
 	if_free_ptr(cub3d->img);
 	if (cub3d->texture)
 		free_texture(cub3d);
-	if_free_ptr(cub3d->ray);
+	ft_bzero(cub3d->ray, WD);
 	if (cub3d)
 		free(cub3d);
 	if (ret != 0)

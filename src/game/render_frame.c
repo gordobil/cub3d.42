@@ -6,16 +6,11 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/24 13:49:12 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/29 18:46:54 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-double	deg_to_rad(double ang)
-{
-	return (ang * M_PI / 180);
-}
 
 void	img_management(t_cub3d *cub3d, t_img *img, int mark)
 {
@@ -27,8 +22,9 @@ void	img_management(t_cub3d *cub3d, t_img *img, int mark)
 	}
 	else if (mark == 1)
 	{
-		draw_minimap(cub3d);
+		mlx_clear_window(cub3d->mlx, cub3d->window);
 		draw_pointer(cub3d);
+		draw_minimap(cub3d);
 		mlx_put_image_to_window(cub3d->mlx, cub3d->window, img->img, 0, 0);
 		mlx_destroy_image(cub3d->mlx, img->img);
 	}
