@@ -25,7 +25,7 @@ int	close_window(t_cub3d *cub3d)
 	return (0);
 }
 
-int	draw_loop(t_cub3d *cub3d)
+int	move_and_draw(t_cub3d *cub3d)
 {
 	int	old_ang;
 	int	wall;
@@ -33,9 +33,9 @@ int	draw_loop(t_cub3d *cub3d)
 	old_ang = cub3d->player->ang;
 	wall = 1;
 	if (cub3d->r_key == 1)
-		cub3d->player->ang = (cub3d->player->ang + 1) % 360;
+		get_angle(cub3d, '+');
 	if (cub3d->l_key == 1)
-		cub3d->player->ang = (cub3d->player->ang + 359) % 360;
+		get_angle(cub3d, '-');
 	if (cub3d->w_key == 1)
 		wall = walk_forwards(cub3d);
 	if (cub3d->s_key == 1)
@@ -51,8 +51,6 @@ int	draw_loop(t_cub3d *cub3d)
 
 int	handle_release(int keysym, t_cub3d *cub3d)
 {
-	if (keysym == Q || keysym == ESC)
-		close_window(cub3d);
 	if (keysym == RIGHT)
 		cub3d->r_key = 0;
 	if (keysym == LEFT)
@@ -94,19 +92,19 @@ int	mlx_management(t_cub3d *cub3d)
 		return (ERROR_FATAL);
 	cub3d->mlx = mlx_init();
 	if (!cub3d->mlx)
-		return (ERROR_MLX);
+		return (if_free_ptr(cub3d->img), ERROR_MLX);
 	if (init_textures(cub3d) != 0)
 		return (mlx_destroy_display(cub3d->mlx), if_free_ptr(cub3d->mlx),
-			ERROR_TEXTURES);
+			if_free_ptr(cub3d->img), ERROR_TEXTURES);
 	cub3d->window = mlx_new_window(cub3d->mlx, WD, HE, "cub3d");
 	if (!cub3d->window)
 		return (mlx_destroy_display(cub3d->mlx), destroy_textures(cub3d, 4),
-			if_free_ptr(cub3d->mlx), ERROR_MLX);
+			if_free_ptr(cub3d->mlx), if_free_ptr(cub3d->img), ERROR_MLX);
 	render_frame(cub3d, cub3d->img, cub3d->ray);
 	mlx_hook(cub3d->window, 2, 1L<<0, handle_input, cub3d);
 	mlx_hook(cub3d->window, 3, 1L<<1, handle_release, cub3d);
 	mlx_hook(cub3d->window, 17, 1, close_window, cub3d);
-	mlx_loop_hook(cub3d->mlx, draw_loop, cub3d);
+	mlx_loop_hook(cub3d->mlx, move_and_draw, cub3d);
 	mlx_loop(cub3d->mlx);
 	return (mlx_destroy_display(cub3d->mlx),
 		mlx_destroy_window(cub3d->mlx, cub3d->window),
