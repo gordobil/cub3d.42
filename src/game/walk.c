@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walk.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngordobi <ngordobi@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/22 11:39:53 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/29 17:05:02 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	walk_right(t_cub3d *cub3d)
 	new_x = cub3d->player->x
 		- sin(deg_to_rad(cub3d->player->ang)) * cub3d->player->speed;
 	new_y = cub3d->player->y
-		- cos(deg_to_rad(cub3d->player->ang)) * cub3d->player->speed;
+		+ cos(deg_to_rad(cub3d->player->ang)) * cub3d->player->speed;
 	if (is_walkable(cub3d, new_x, new_y))
 	{
 		cub3d->player->x = new_x;
@@ -93,7 +93,7 @@ int	walk_left(t_cub3d *cub3d)
 	new_x = cub3d->player->x
 		+ sin(deg_to_rad(cub3d->player->ang)) * cub3d->player->speed;
 	new_y = cub3d->player->y
-		+ cos(deg_to_rad(cub3d->player->ang)) * cub3d->player->speed;
+		- cos(deg_to_rad(cub3d->player->ang)) * cub3d->player->speed;
 	if (is_walkable(cub3d, new_x, new_y))
 	{
 		cub3d->player->x = new_x;

@@ -62,9 +62,9 @@ int	free_cub3d(t_cub3d *cub3d, int er)
 		ret += free_matrix(cub3d->map);
 	if_free_ptr(cub3d->player);
 	if_free_ptr(cub3d->img);
-	if (cub3d->textures)
-		free_textures(cub3d);
-	if_free_ptr(cub3d->ray);
+	if (cub3d->texture)
+		free_texture(cub3d);
+	ft_bzero(cub3d->ray, WD);
 	if (cub3d)
 		free(cub3d);
 	if (ret != 0)

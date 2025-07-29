@@ -13,8 +13,7 @@
 NAME				=	cub3d
 
 CC					=	gcc
-CC_FLAGS			=	-Wall -Wextra -Werror -fsanitize=address
-MLX_FLAGS			=	-L mlx/ -lmlx -lXext -lX11 -lm
+CC_FLAGS			=	-Wall -Wextra -Werror
 
 SRC_PATH			=	./src/
 GAME_PATH			=	./src/game/
@@ -26,6 +25,7 @@ LIBFT				=	$(LIBFT_PATH)libft.a
 MLX					=	./mlx/libmlx_Linux.a
 
 SOURCES				=	$(GAME_PATH)draw.c \
+						$(GAME_PATH)game_utils.c \
 						$(GAME_PATH)init_textures.c \
 						$(GAME_PATH)minimap.c \
 						$(GAME_PATH)mlx.c \
