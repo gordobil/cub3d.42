@@ -14,7 +14,6 @@ NAME				=	cub3d
 
 CC					=	gcc
 CC_FLAGS			=	-Wall -Wextra -Werror
-MLX_FLAGS			=	-L mlx/ -lmlx -lXext -lX11 -lm
 
 SRC_PATH			=	./src/
 GAME_PATH			=	./src/game/

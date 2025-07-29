@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <stdint.h>
 # include <fcntl.h>
 # include <math.h>
 # include <sys/stat.h>
@@ -76,6 +77,7 @@ typedef struct s_img
 	int			endian;
 	int			width;
 	int			height;
+	uint32_t	*pixels;
 }				t_img;
 
 typedef struct s_texture
