@@ -27,7 +27,7 @@ int	close_window(t_cub3d *cub3d)
 
 int	move_and_draw(t_cub3d *cub3d)
 {
-	int	old_ang;
+	double	old_ang;
 	int	wall;
 
 	old_ang = cub3d->player->ang;

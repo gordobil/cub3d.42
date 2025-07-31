@@ -6,11 +6,12 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/31 12:45:29 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/31 19:36:26 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
 
 int	load_texture(t_img *t, void *mlx)
 {

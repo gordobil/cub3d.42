@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/31 14:17:39 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/31 15:13:02 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,8 @@ void	draw_vertical_line(t_cub3d *cub3d, int x, int start, int end)
 	{
 		while (++y < end)
 			my_pixel_put(cub3d->img, x, y, WHITE);
-		
 	}
-	else
+	else if (cub3d->ray[x].type == 'v')
 		while (++y < end)
 			my_pixel_put(cub3d->img, x, y, GREY);
 	y--;

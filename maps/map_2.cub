@@ -1,7 +1,7 @@
 NO ./textures/Ladrillo.xpm
 SO ./textures/LadrilloRoto.xpm
 WE ./textures/Roca.xpm
-EA ./textures/Roca2.xpm
+EA ./textures/prueba.xpm
 
 F 11,83,148
 C 111,168,220

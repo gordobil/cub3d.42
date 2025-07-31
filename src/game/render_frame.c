@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/31 14:25:53 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/31 19:37:04 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,31 +30,111 @@ void	img_management(t_cub3d *cub3d, t_img *img, int mark)
 	}
 }
 
-double	cast_single_ray(t_cub3d *cub3d, t_ray *ray, double angle)
+void	resolve_ray(t_cub3d *cub3d, t_ray *ray)
 {
-	double	step;
-	int		map_x;
-	int		map_y;
+	int			MAX_DEPTH = 25;
+	int			depth;
+	int			map_x;
+	int			map_y;
 
-	ray->rx = cub3d->player->x;
-	ray->ry = cub3d->player->y;
-	step = 1.0;
-	while (1)
+	depth = 0;
+	while (depth < MAX_DEPTH)
 	{
-		map_x = (int)(ray->rx / SQ);
-		map_y = (int)(ray->ry / SQ);
+		map_x = ray->rx / SQ;
+		map_y = ray->ry / SQ;
 		if (map_y < 0 || map_y >= matrix_size(cub3d->map)
-			|| map_x < 0 || map_x >= (int)ft_strlen(cub3d->map[map_y])
-			|| cub3d->map[map_y][map_x] == '1')
+		|| map_x < 0 || map_x >= (int)ft_strlen(cub3d->map[map_y])
+		|| cub3d->map[map_y][map_x] == '1')
 			break ;
-		ray->rx += cos(deg_to_rad(angle)) * step;
-		ray->ry += sin(deg_to_rad(angle)) * step;
+		else
+		{
+			ray->rx += ray->delta_x;
+			ray->ry += ray->delta_y;
+			depth++;
+		}
 	}
-	ray->type = 'v';
-	if (!((int)ray->rx % 32))
+}
+void	make_ray_v(t_cub3d *cub3d, t_ray *ray, double angle)
+{
+	ray->rx = 0;
+	ray->ry = 0;
+	ray->delta_x = 0;
+	ray->delta_y = 0;
+	
+	if (angle >= M_PI / 2 && angle <= M_PI * 3 / 2)
+	{
+		ray->rx = (((int)(cub3d->player->x / SQ)) * SQ) - 0.0001;
+		ray->ry = (cub3d->player->x - ray->rx) * -tan(angle) + cub3d->player->y;
+		ray->delta_x = -SQ;
+		ray->delta_y = -ray->delta_x * -tan(angle);
+	}
+	if (angle < M_PI / 2 || angle > M_PI * 3 / 2)
+	{
+		ray->rx = (((int)(cub3d->player->x / SQ) + 1) * SQ);
+		ray->ry = (cub3d->player->x - ray->rx) * -tan(angle) + cub3d->player->y;
+		ray->delta_x = SQ;
+		ray->delta_y = -ray->delta_x * -tan(angle);
+	}
+	//printf("pre resolve: ray.x:%f ray.y:%f\n", ray->rx, ray->ry);
+	resolve_ray(cub3d, ray);
+	//printf("post resolve: ray.x:%f ray.y:%f\n", ray->rx, ray->ry);
+	ray->distance = sqrt((ray->rx - cub3d->player->x) * (ray->rx - cub3d->player->x)
+	+ (ray->ry - cub3d->player->y) * (ray->ry - cub3d->player->y));
+}
+
+void	make_ray_h(t_cub3d *cub3d, t_ray *ray, double angle)
+{
+	ray->rx = 0;
+	ray->ry = 0;
+	ray->delta_x = 0;
+	ray->delta_y = 0;
+
+	if (angle > M_PI)
+	{
+		ray->ry = (((int)(cub3d->player->y / SQ)) * SQ) - 0.0001;
+		ray->rx = (cub3d->player->y - ray->ry) * -1 / tan(angle) + cub3d->player->x;
+		ray->delta_y = -SQ;
+		ray->delta_x = -ray->delta_y * -1 / tan(angle);
+	}
+	if (angle < M_PI)
+	{
+		ray->ry = (((int)(cub3d->player->y / SQ) + 1) * SQ);
+		ray->rx = (cub3d->player->y - ray->ry) * -1 / tan(angle) + cub3d->player->x;
+		ray->delta_y = SQ;
+		ray->delta_x = -ray->delta_y * -1 / tan(angle);
+	}
+	//printf("pre resolve: ray.x:%f ray.y:%f\n", ray->rx, ray->ry);
+	resolve_ray(cub3d, ray);
+	//printf("post resolve: ray.x:%f ray.y:%f\n", ray->rx, ray->ry);
+	ray->distance = sqrt((ray->rx - cub3d->player->x) * (ray->rx - cub3d->player->x)
+	+ (ray->ry - cub3d->player->y) * (ray->ry - cub3d->player->y));
+
+}
+
+double cast_single_ray(t_cub3d *cub3d, t_ray *ray, double angle)
+{
+	t_ray	ray_h;
+	t_ray	ray_v;
+
+	make_ray_v(cub3d, &ray_v, angle);
+	make_ray_h(cub3d, &ray_h, angle);
+
+	if (ray_h.distance < ray_v.distance)
+	{
+		ray->rx = ray_h.rx;
+		ray->ry = ray_h.ry;
 		ray->type = 'h';
-	return (sqrt((ray->rx - cub3d->player->x) * (ray->rx - cub3d->player->x)
-			+ (ray->ry - cub3d->player->y) * (ray->ry - cub3d->player->y)));
+	}
+	else
+	{
+		ray->rx = ray_v.rx;
+		ray->ry = ray_v.ry;
+		ray->type = 'v';
+	}
+
+	//printf("selected: ray.x:%f ray.y:%f\n selected type: %c\n", ray->rx, ray->ry, ray->type);
+		return (sqrt((ray->rx - cub3d->player->x) * (ray->rx - cub3d->player->x)
+		+ (ray->ry - cub3d->player->y) * (ray->ry - cub3d->player->y)));
 }
 
 int	render_frame(t_cub3d *cub3d, t_img *img, t_ray *ray)
@@ -67,18 +147,13 @@ int	render_frame(t_cub3d *cub3d, t_img *img, t_ray *ray)
 	img_management(cub3d, img, 0);
 	while (++x < WD)
 	{
-		// estos angulos no estan en grados, no?
-		// siempre se inicializan a 0
 		ray[x].angle = cub3d->player->ang - 30 + (x * (60.0 / WD));
-		ft_printf("render_frame ray[%d].angle: %d\n", x, ray[x].angle);
-		
-		// aqui los tratamos como si o fueran, y en draw_textures también
 		if (ray[x].angle < 0)
 			ray[x].angle += 360;
 		else if (ray[x].angle >= 360)
 			ray[x].angle -= 360;
 	
-		ray[x].distance = cast_single_ray(cub3d, &cub3d->ray[x], ray[x].angle)
+		ray[x].distance = cast_single_ray(cub3d, &cub3d->ray[x], deg_to_rad(ray[x].angle))
 			* cos(deg_to_rad(ray[x].angle - cub3d->player->ang));
 		draw_start = (HE / 2) - (((int)((SQ * HE) / ray[x].distance)) / 2);
 		draw_end = (HE / 2) + (((int)((SQ * HE) / ray[x].distance)) / 2);
@@ -86,12 +161,8 @@ int	render_frame(t_cub3d *cub3d, t_img *img, t_ray *ray)
 			draw_start = 0;
 		if (draw_end >= HE)
 			draw_end = HE - 1;
-		// así le llega luego al draw_textures:
-		ft_printf("ray.angle: %d\n", cub3d->ray[x].angle);
-		
-		draw_vertical_line(cub3d, x, draw_start, draw_end);
+		draw_textures(cub3d, x, draw_start, draw_end);
 	
-		//draw_textures(cub3d, x, draw_start, draw_end);
 	}
 	img_management(cub3d, img, 1);
 	return (0);
