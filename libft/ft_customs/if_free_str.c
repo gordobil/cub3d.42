@@ -17,6 +17,7 @@ int	if_free_str(char *str)
 	if (str)
 	{
 		free(str);
+		str = NULL;
 		return (0);
 	}
 	return (1);

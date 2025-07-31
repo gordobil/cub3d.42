@@ -17,6 +17,7 @@ int	if_free_ptr(void *ptr)
 	if (ptr)
 	{
 		free(ptr);
+		ptr = NULL;
 		return (0);
 	}
 	return (1);
