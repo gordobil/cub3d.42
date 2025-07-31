@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/31 14:19:01 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/31 14:25:53 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	render_frame(t_cub3d *cub3d, t_img *img, t_ray *ray)
 	while (++x < WD)
 	{
 		// estos angulos no estan en grados, no?
+		// siempre se inicializan a 0
 		ray[x].angle = cub3d->player->ang - 30 + (x * (60.0 / WD));
 		ft_printf("render_frame ray[%d].angle: %d\n", x, ray[x].angle);
 		
@@ -86,7 +87,7 @@ int	render_frame(t_cub3d *cub3d, t_img *img, t_ray *ray)
 		if (draw_end >= HE)
 			draw_end = HE - 1;
 		// así le llega luego al draw_textures:
-		ft_printf("ray.angle[%d]\n", cub3d->ray[x].angle);
+		ft_printf("ray.angle: %d\n", cub3d->ray[x].angle);
 		
 		draw_vertical_line(cub3d, x, draw_start, draw_end);
 	
