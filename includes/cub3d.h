@@ -126,7 +126,7 @@ typedef struct s_cub3d
 
 /*********************************** GAME ************************************/
 // DRAW
-void	my_pixel_put(t_img *img, int x, int y, int color);
+void	my_pixel_put(t_img *img, int x, int y, unsigned int color);
 void	draw_vertical_line(t_cub3d *cub3d, int x, int start, int end);
 void	draw_square(t_cub3d *cub3d, int x, int y, int color);
 void	draw_pointer(t_cub3d *cub3d);
@@ -149,7 +149,7 @@ int		mlx_management(t_cub3d *cub3d);
 int		render_frame(t_cub3d *cub3d, t_img *img, t_ray *ray);
 
 // RENDER_TEXTURES
-void	draw_textures(t_cub3d *cub3d, int x, int y);
+void	draw_textures(t_cub3d *cub3d, int x, int start, int end);
 
 // WALK
 int		walk_forwards(t_cub3d *cub3d);

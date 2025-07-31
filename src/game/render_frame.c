@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/29 18:46:54 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/31 14:19:01 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ double	cast_single_ray(t_cub3d *cub3d, t_ray *ray, double angle)
 		ray->rx += cos(deg_to_rad(angle)) * step;
 		ray->ry += sin(deg_to_rad(angle)) * step;
 	}
+	ray->type = 'v';
+	if (!((int)ray->rx % 32))
+		ray->type = 'h';
 	return (sqrt((ray->rx - cub3d->player->x) * (ray->rx - cub3d->player->x)
 			+ (ray->ry - cub3d->player->y) * (ray->ry - cub3d->player->y)));
 }
@@ -64,20 +67,30 @@ int	render_frame(t_cub3d *cub3d, t_img *img, t_ray *ray)
 	img_management(cub3d, img, 0);
 	while (++x < WD)
 	{
-		ray->angle = cub3d->player->ang - 30 + (x * (60.0 / WD));
-		if (ray->angle < 0)
-			ray->angle += 360;
-		else if (ray->angle >= 360)
-			ray->angle -= 360;
-		ray->distance = cast_single_ray(cub3d, cub3d->ray, ray->angle)
-			* cos(deg_to_rad(ray->angle - cub3d->player->ang));
-		draw_start = (HE / 2) - (((int)((SQ * HE) / ray->distance)) / 2);
-		draw_end = (HE / 2) + (((int)((SQ * HE) / ray->distance)) / 2);
+		// estos angulos no estan en grados, no?
+		ray[x].angle = cub3d->player->ang - 30 + (x * (60.0 / WD));
+		ft_printf("render_frame ray[%d].angle: %d\n", x, ray[x].angle);
+		
+		// aqui los tratamos como si o fueran, y en draw_textures también
+		if (ray[x].angle < 0)
+			ray[x].angle += 360;
+		else if (ray[x].angle >= 360)
+			ray[x].angle -= 360;
+	
+		ray[x].distance = cast_single_ray(cub3d, &cub3d->ray[x], ray[x].angle)
+			* cos(deg_to_rad(ray[x].angle - cub3d->player->ang));
+		draw_start = (HE / 2) - (((int)((SQ * HE) / ray[x].distance)) / 2);
+		draw_end = (HE / 2) + (((int)((SQ * HE) / ray[x].distance)) / 2);
 		if (draw_start < 0)
 			draw_start = 0;
 		if (draw_end >= HE)
 			draw_end = HE - 1;
+		// así le llega luego al draw_textures:
+		ft_printf("ray.angle[%d]\n", cub3d->ray[x].angle);
+		
 		draw_vertical_line(cub3d, x, draw_start, draw_end);
+	
+		//draw_textures(cub3d, x, draw_start, draw_end);
 	}
 	img_management(cub3d, img, 1);
 	return (0);

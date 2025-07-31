@@ -6,13 +6,13 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/29 18:35:52 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/07/31 14:17:39 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	my_pixel_put(t_img *img, int x, int y, int color)
+void	my_pixel_put(t_img *img, int x, int y, unsigned int color)
 {
 	char	*dst;
 
@@ -30,8 +30,15 @@ void	draw_vertical_line(t_cub3d *cub3d, int x, int start, int end)
 	while (++y < start)
 		my_pixel_put(cub3d->img, x, y, cub3d->player->c_col);
 	y--;
-	while (++y < end)
-		my_pixel_put(cub3d->img, x, y, WHITE);
+	if (cub3d->ray[x].type == 'h')
+	{
+		while (++y < end)
+			my_pixel_put(cub3d->img, x, y, WHITE);
+		
+	}
+	else
+		while (++y < end)
+			my_pixel_put(cub3d->img, x, y, GREY);
 	y--;
 	while (++y < HE)
 		my_pixel_put(cub3d->img, x, y, cub3d->player->f_col);
