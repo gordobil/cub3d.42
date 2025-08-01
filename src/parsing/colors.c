@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngordobi <ngordobi@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/22 13:31:05 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/08/01 13:53:21 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	get_num(char *elem, int s, int j, int k)
 void	set_colors(t_player *player, int i, int c[3])
 {
 	if (i == 4)
-		player->f_col = 255 | (c[0] << 24) | (c[1] << 16) | (c[2] << 8);
+		player->f_col = (c[0] << 16) | (c[1] << 8) | c[2];
 	else if (i == 5)
-		player->c_col = 255 | (c[0] << 24) | (c[1] << 16) | (c[2] << 8);
+		player->c_col = (c[0] << 16) | (c[1] << 8) | c[2];
 }
 
 int	get_colors(char **elems, t_player *player, int i, int j)

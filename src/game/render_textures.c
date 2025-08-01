@@ -6,108 +6,74 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/24 13:49:12 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/08/01 13:17:08 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	get_texture_color(t_img *texture, int tx, int ty)
+void	draw_texture_pixel_x(t_cub3d *cub3d, t_img *texture, int x, int y)
 {
-	char	*pixel;
-	int		color;
-
-	if (tx < 0 || tx >= texture->width || ty < 0 || ty >= texture->height)
-		return (0x000000);
-	pixel = texture->addr + (ty * texture->line_length
-			+ tx * (texture->bits_per_pixel / 8));
-	color = *(unsigned int *)pixel;
-	return (color);
-}
-
-void	draw_texture_pixel(t_cub3d *cub3d, t_img *texture, int x, int y, int tx)
-{
-	int	ty;
-	int	color;
-	int	wall_height;
+	unsigned int	color;
+	int				ty;
+	int				tx;
+	int				wall_height;
+	int				texture_width;
 
 	if (!texture || !texture->addr)
-		return;
+		return ;
+	texture_width = texture->width - 1;
+	tx = (int)(cub3d->ray[x].rx * texture_width / SQ);
+	tx = tx % texture_width;
 	wall_height = (int)((SQ * HE) / cub3d->ray[x].distance);
 	ty = ((y - (HE / 2 - wall_height / 2)) * texture->height) / wall_height;
-	if (tx < 0 || tx >= texture->width || ty < 0 || ty >= texture->height)
-		return;
-	color = *(int *)(texture->addr + (ty * texture->line_length
-			+ tx * (texture->bits_per_pixel / 8)));
+	color = *((unsigned int *)(texture->addr \
+		+ (ty * texture->line_length + tx * (texture->bits_per_pixel / 8))));
 	my_pixel_put(cub3d->img, x, y, color);
 }
 
-
-
-void	draw_north_texture(t_cub3d *cub3d, int x, int y)
+void	draw_texture_pixel_y(t_cub3d *cub3d, t_img *texture, int x, int y)
 {
-	int texture_width = cub3d->texture->north->width - 1;
-	int tx = (int)(cub3d->ray[x].rx * texture_width / SQ);
+	unsigned int	color;
+	int				ty;
+	int				tx;
+	int				wall_height;
+	int				texture_width;
+
+	if (!texture || !texture->addr)
+		return ;
+	texture_width = texture->width - 1;
+	tx = (int)(cub3d->ray[x].ry * texture_width / SQ);
 	tx = tx % texture_width;
-
-	draw_texture_pixel(cub3d, cub3d->texture->north, x, y, tx);
+	wall_height = (int)((SQ * HE) / cub3d->ray[x].distance);
+	ty = ((y - (HE / 2 - wall_height / 2)) * texture->height) / wall_height;
+	color = *((unsigned int *)(texture->addr \
+		+ (ty * texture->line_length + tx * (texture->bits_per_pixel / 8))));
+	my_pixel_put(cub3d->img, x, y, color);
 }
 
-void	draw_south_texture(t_cub3d *cub3d, int x, int y)
+void	draw_textures(t_cub3d *cub3d, int x, int start, int end)
 {
-	ft_printf("draw_south\n");
-	int texture_width = cub3d->texture->south->width - 1;
-	int tx = (int)(cub3d->ray->rx * texture_width / SQ);
-	tx = texture_width - (tx % texture_width);
+	int	y;
 
-	draw_texture_pixel(cub3d, cub3d->texture->south, x, y, tx);
-	ft_printf("drawed_south_px\n");
-}
-
-
-void	draw_west_texture(t_cub3d *cub3d, int x, int y)
-{
-	int texture_width = cub3d->texture->west->width - 1;
-	int tx = (int)(cub3d->ray[x].ry * texture_width / SQ);
-	tx = texture_width - (tx % texture_width);
-
-	draw_texture_pixel(cub3d, cub3d->texture->west, x, y, tx);
-}
-
-
-void	draw_east_texture(t_cub3d *cub3d, int x, int y)
-{
-	int texture_width = cub3d->texture->east->width - 1;
-	int tx = (int)(cub3d->ray[x].ry * texture_width / SQ);
-	tx = tx % texture_width;
-
-	draw_texture_pixel(cub3d, cub3d->texture->east, x, y, tx);
-}
-
-
-void	draw_textures(t_cub3d *cub3d, int x, int y)
-{
-    printf("a\n");
-	if (cub3d->ray[x].type == 'h' && cub3d->ray[x].angle < M_PI)
-    {
-        printf("Paso_North\n");
-		draw_north_texture(cub3d, x, y);
-    }
-	else if (cub3d->ray->type == 'h' && cub3d->ray->angle >= M_PI)
-    {
-        printf("Paso_Shouth\n");
-		draw_south_texture(cub3d, x, y);
-    }
-	else if (cub3d->ray[x].type == 'v'
-		&& (cub3d->ray[x].angle < 90 * M_PI / 180
-		|| cub3d->ray[x].angle > 270 * M_PI / 180))
+	y = -1;
+	while (++y < start)
+		my_pixel_put(cub3d->img, x, y, cub3d->player->c_col);
+	y--;
+	while (++y < end)
 	{
-		printf("Paso_aaa\n");
-		draw_west_texture(cub3d, x, y);
+		if (cub3d->ray[x].type == 'h' && cub3d->ray[x].angle >= 180)
+			draw_texture_pixel_x(cub3d, cub3d->texture->north, x, y);
+		if (cub3d->ray[x].type == 'h' && cub3d->ray[x].angle < 180)
+			draw_texture_pixel_x(cub3d, cub3d->texture->south, x, y);
+		if (cub3d->ray[x].type == 'v' && cub3d->ray[x].angle >= 90
+			&& cub3d->ray[x].angle < 270)
+			draw_texture_pixel_y(cub3d, cub3d->texture->west, x, y);
+		if (cub3d->ray[x].type == 'v' && (cub3d->ray[x].angle < 90
+				|| cub3d->ray[x].angle > 270))
+			draw_texture_pixel_y(cub3d, cub3d->texture->east, x, y);
 	}
-	else
-	{
-		printf("Paso_bbbbb\n");
-		draw_east_texture(cub3d, x, y);
-	}
+	y--;
+	while (++y < HE)
+		my_pixel_put(cub3d->img, x, y, cub3d->player->f_col);
 }

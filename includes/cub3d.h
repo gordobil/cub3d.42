@@ -41,6 +41,7 @@
 # define LEFT				65361
 # define ESC				65307
 # define Q 					113
+# define E 					101
 
 // ERRORS
 # define ERROR_FATAL		1
@@ -61,6 +62,8 @@ typedef struct s_ray
 {
 	double		rx;
 	double		ry;
+	double		delta_x;
+	double		delta_y;
 	double		angle;
 	char		type;
 	float		distance;
@@ -126,61 +129,70 @@ typedef struct s_cub3d
 
 /*********************************** GAME ************************************/
 // DRAW
-void	my_pixel_put(t_img *img, int x, int y, int color);
-void	draw_vertical_line(t_cub3d *cub3d, int x, int start, int end);
-void	draw_square(t_cub3d *cub3d, int x, int y, int color);
-void	draw_pointer(t_cub3d *cub3d);
+void			my_pixel_put(t_img *img, int x, int y, unsigned int color);
+void			draw_vertical_line(t_cub3d *cub3d, int x, int start, int end);
+void			draw_square(t_cub3d *cub3d, int x, int y, int color);
+void			draw_pointer(t_cub3d *cub3d);
 
 // GAME_UTILS
-double	deg_to_rad(double ang);
-void	get_angle(t_cub3d *cub3d, char sign);
+double			deg_to_rad(double ang);
+double			get_angle(double ang, char sign);
+void			print_info(t_cub3d *cub3d);
+
+// HANDLE_KEYS
+int				handle_input(int keysym, t_cub3d *cub3d);
+int				handle_release(int keysym, t_cub3d *cub3d);
 
 // INIT_TEXTURES
-int		init_textures(t_cub3d *cub3d);
-int		load_texture(t_img *t, void *mlx);
+int				init_textures(t_cub3d *cub3d);
+int				load_texture(t_img *t, void *mlx);
 
 // MINIMAP
-void	draw_minimap(t_cub3d *cub3d);
+void			draw_minimap(t_cub3d *cub3d);
 
 // MLX
-int		mlx_management(t_cub3d *cub3d);
+int				close_window(t_cub3d *cub3d);
+int				mlx_management(t_cub3d *cub3d);
+
+// RAYS
+double			cast_single_ray(t_cub3d *cub3d, t_ray *ray, double angle);
 
 // RENDER_FRAME
-int		render_frame(t_cub3d *cub3d, t_img *img, t_ray *ray);
+void			render_frame(t_cub3d *cub3d, t_img *img, t_ray *ray);
 
 // RENDER_TEXTURES
-void	draw_textures(t_cub3d *cub3d, int x, int y);
+void			draw_textures(t_cub3d *cub3d, int x, int start, int end);
 
 // WALK
-int		walk_forwards(t_cub3d *cub3d);
-int		walk_backwards(t_cub3d *cub3d);
-int		walk_right(t_cub3d *cub3d);
-int		walk_left(t_cub3d *cub3d);
+int				walk_forwards(t_cub3d *cub3d);
+int				walk_backwards(t_cub3d *cub3d);
+int				walk_right(t_cub3d *cub3d);
+int				walk_left(t_cub3d *cub3d);
 
 /********************************** PARSING **********************************/
 // COLORS
-int		get_colors(char **elems, t_player *player, int i, int j);
+int				get_colors(char **elems, t_player *player, int i, int j);
 
 // FILE
-int		get_path(char *path, t_cub3d *cub3d);
-int		check_file(t_cub3d *cub3d);
+int				get_path(char *path, t_cub3d *cub3d);
+int				check_file(t_cub3d *cub3d);
 
 // MAP_CHECK
-int		map_check(t_cub3d *cub3d);
+int				map_check(t_cub3d *cub3d);
 
 // MAP
-int		tab_replace(t_cub3d *cub3d);
-int		get_map(t_cub3d *cub3d, char *line);
+int				tab_replace(t_cub3d *cub3d);
+int				get_map(t_cub3d *cub3d, char *line);
 
 // PARSING_UTILS
-int		jump_empty(char *line, int i);
-int		get_elem_length(int i, char *line);
-void	close_file(int fd, char *line);
+int				jump_empty(char *line, int i);
+int				get_elem_length(int i, char *line);
+void			close_file(int fd, char *line);
 
 /************************************ SRC ************************************/
 // EXIT
-int		destroy_textures(t_cub3d *cub3d, int t);
-int		free_cub3d(t_cub3d *cub3d, int error);
-int		error(int code);
+int				destroy_textures(t_cub3d *cub3d, int t);
+int				free_cub3d(t_cub3d *cub3d, int error);
+int				error(int code);
 
 #endif

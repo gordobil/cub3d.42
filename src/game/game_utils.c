@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/29 17:24:57 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/08/01 15:01:14 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,26 @@ double	deg_to_rad(double ang)
 	return (ang * M_PI / 180);
 }
 
-void	get_angle(t_cub3d *cub3d, char sign)
+double	get_angle(double ang, char sign)
 {
 	double	speed;
 
 	speed = 1.5;
 	if (sign == '+')
-		cub3d->player->ang += speed;
+		ang += speed;
 	else if (sign == '-')
-		cub3d->player->ang -= speed;
-	if (cub3d->player->ang > 359)
-		cub3d->player->ang -= 360;
-	else if (cub3d->player->ang < 0)
-		cub3d->player->ang += 360;
+		ang -= speed;
+	if (ang > 359)
+		ang -= 360;
+	else if (ang < 0)
+		ang += 360;
+	return (ang);
+}
+
+void	print_info(t_cub3d *cub3d)
+{
+	ft_printf("----- CUB3D INFO -----\n");
+	printf(" ¬ Player coordinates [%f, %f]\n", cub3d->player->x, cub3d->player->y);
+	printf(" ¬ Square [%d, %d] = %c\n", (int)cub3d->player->x / 30, (int)cub3d->player->y / 30, cub3d->map[(int)cub3d->player->x / 30][(int)cub3d->player->y / 30]);
+	ft_printf("----------------------\n\n");
 }

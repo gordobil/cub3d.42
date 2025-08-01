@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/29 18:49:14 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/08/01 12:09:20 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ int	main(int argc, char **argv)
 // QUE HAY K HACER:
 
 /*
-	- texturas
 	- antes de entregar quitar lo de borrar los zone identifiers del makefile
 */
 
