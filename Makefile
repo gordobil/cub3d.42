@@ -27,9 +27,11 @@ MLX					=	./mlx/libmlx_Linux.a
 
 SOURCES				=	$(GAME_PATH)draw.c \
 						$(GAME_PATH)game_utils.c \
+						$(GAME_PATH)handle_keys.c \
 						$(GAME_PATH)init_textures.c \
 						$(GAME_PATH)minimap.c \
 						$(GAME_PATH)mlx.c \
+						$(GAME_PATH)rays.c \
 						$(GAME_PATH)render_frame.c \
 						$(GAME_PATH)render_textures.c \
 						$(GAME_PATH)walk.c \

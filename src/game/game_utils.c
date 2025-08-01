@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/08/01 11:21:28 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/08/01 12:05:32 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,33 @@ double	deg_to_rad(double ang)
 	return (ang * M_PI / 180);
 }
 
-void	get_angle(t_cub3d *cub3d, char sign)
+double	get_angle(double ang, char sign)
 {
 	double	speed;
 
 	speed = 1.5;
 	if (sign == '+')
-		cub3d->player->ang += speed;
+		ang += speed;
 	else if (sign == '-')
-		cub3d->player->ang -= speed;
-	if (cub3d->player->ang > 359)
-		cub3d->player->ang -= 360;
-	else if (cub3d->player->ang < 0)
-		cub3d->player->ang += 360;
+		ang -= speed;
+	if (ang > 359)
+		ang -= 360;
+	else if (ang < 0)
+		ang += 360;
+	return (ang);
+}
+
+unsigned int	get_pixel_color(t_img *texture, int distance, int y, int tx)
+{
+	unsigned int	color;
+	int				ty;
+	int				wall_height;
+
+	if (!texture || !texture->addr)
+		return (0);
+	wall_height = (int)((SQ * HE) / distance);
+	ty = ((y - (HE / 2 - wall_height / 2)) * texture->height) / wall_height;
+	color = *((unsigned int *)(texture->addr \
+		+ (ty * texture->line_length + tx * (texture->bits_per_pixel / 8))));
+	return (color);
 }
