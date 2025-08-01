@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/08/01 12:09:20 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/08/01 17:16:40 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	init_player(t_cub3d *cub3d)
 	cub3d->player = malloc(sizeof(t_player));
 	if (!cub3d->player)
 		return (ERROR_FATAL);
-	cub3d->player->x = (cub3d->start_x * SQ) - (SQ / 2);
-	cub3d->player->y = (cub3d->start_y * SQ) - (SQ / 2);
+	cub3d->player->x = (cub3d->start_x * (double)SQ) + ((double)SQ / 2);
+	cub3d->player->y = (cub3d->start_y * (double)SQ) + ((double)SQ / 2);
 	cub3d->player->speed = 2;
 	if (cub3d->start_pos == 'N')
 		cub3d->player->ang = 270;

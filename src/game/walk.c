@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/29 17:05:02 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/08/01 17:30:05 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	is_walkable(t_cub3d *cub3d, int new_x, int new_y)
 
 	if (new_x < 0 || new_y < 0)
 		return (0);
-	map_x = new_x / SQ;
-	map_y = new_y / SQ;
+	map_x = (new_x / SQ);
+	map_y = (new_y / SQ);
 	if (map_y < 0 || map_y >= matrix_size(cub3d->map)
 		|| map_x < 0 || map_x >= (int)ft_strlen(cub3d->map[map_y]))
 		return (0);

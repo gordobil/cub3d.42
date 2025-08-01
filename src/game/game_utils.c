@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/08/01 15:01:14 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/08/01 17:27:48 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,12 @@ double	get_angle(double ang, char sign)
 
 void	print_info(t_cub3d *cub3d)
 {
-	ft_printf("----- CUB3D INFO -----\n");
-	printf(" ¬ Player coordinates [%f, %f]\n", cub3d->player->x, cub3d->player->y);
-	printf(" ¬ Square [%d, %d] = %c\n", (int)cub3d->player->x / 30, (int)cub3d->player->y / 30, cub3d->map[(int)cub3d->player->x / 30][(int)cub3d->player->y / 30]);
-	ft_printf("----------------------\n\n");
+	ft_printf("\n-------- CUB3D INFO --------\n");
+	printf(" ¬ Player coordinates\n    [%f, %f]\n", cub3d->player->x, \
+		cub3d->player->y);
+	printf(" ¬ Square [%d, %d] = %c\n", (int)cub3d->player->x \
+			/ SQ, (int)cub3d->player->y / SQ, \
+			cub3d->map[(int)cub3d->player->x \
+			/ 30][(int)cub3d->player->y / 30]);
+	ft_printf("----------------------------\n\n");
 }
