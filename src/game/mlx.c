@@ -28,7 +28,7 @@ int	close_window(t_cub3d *cub3d)
 int	move_and_draw(t_cub3d *cub3d)
 {
 	double	old_ang;
-	int	wall;
+	int		wall;
 
 	old_ang = cub3d->player->ang;
 	wall = 1;
@@ -101,8 +101,8 @@ int	mlx_management(t_cub3d *cub3d)
 		return (mlx_destroy_display(cub3d->mlx), destroy_textures(cub3d, 4),
 			if_free_ptr(cub3d->mlx), if_free_ptr(cub3d->img), ERROR_MLX);
 	render_frame(cub3d, cub3d->img, cub3d->ray);
-	mlx_hook(cub3d->window, 2, 1L<<0, handle_input, cub3d);
-	mlx_hook(cub3d->window, 3, 1L<<1, handle_release, cub3d);
+	mlx_hook(cub3d->window, 2, 1L << 0, handle_input, cub3d);
+	mlx_hook(cub3d->window, 3, 1L << 1, handle_release, cub3d);
 	mlx_hook(cub3d->window, 17, 1, close_window, cub3d);
 	mlx_loop_hook(cub3d->mlx, move_and_draw, cub3d);
 	mlx_loop(cub3d->mlx);
