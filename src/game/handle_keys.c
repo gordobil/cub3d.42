@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/08/01 12:23:28 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/08/01 14:49:54 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	handle_input(int keysym, t_cub3d *cub3d)
 {
 	if (keysym == Q || keysym == ESC)
 		close_window(cub3d);
+	if (keysym == E)
+		print_info(cub3d);
 	if (keysym == RIGHT)
 		cub3d->r_key = 1;
 	if (keysym == LEFT)

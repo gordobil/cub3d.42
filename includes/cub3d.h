@@ -41,6 +41,7 @@
 # define LEFT				65361
 # define ESC				65307
 # define Q 					113
+# define E 					101
 
 // ERRORS
 # define ERROR_FATAL		1
@@ -136,7 +137,7 @@ void			draw_pointer(t_cub3d *cub3d);
 // GAME_UTILS
 double			deg_to_rad(double ang);
 double			get_angle(double ang, char sign);
-unsigned int	get_pixel_color(t_img *texture, int distance, int y, int tx);
+void			print_info(t_cub3d *cub3d);
 
 // HANDLE_KEYS
 int				handle_input(int keysym, t_cub3d *cub3d);

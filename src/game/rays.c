@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/08/01 12:41:56 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/08/01 12:56:54 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	get_ray_v(t_cub3d *cub3d, t_ray *ray, double angle)
 		ray->delta_y = -ray->delta_x * -tan(angle);
 	}
 	resolve_ray(cub3d, ray);
-	ray->distance = sqrt((ray->rx - cub3d->player->x)
-			* (ray->rx - cub3d->player->x) + (ray->ry - cub3d->player->y)
+	ray->distance = sqrt((ray->rx - cub3d->player->x) \
+			* (ray->rx - cub3d->player->x) + (ray->ry - cub3d->player->y) \
 			* (ray->ry - cub3d->player->y));
 }
 
@@ -87,8 +87,8 @@ void	get_ray_h(t_cub3d *cub3d, t_ray *ray, double angle)
 		ray->delta_x = -ray->delta_y * -1 / tan(angle);
 	}
 	resolve_ray(cub3d, ray);
-	ray->distance = sqrt((ray->rx - cub3d->player->x)
-			* (ray->rx - cub3d->player->x) + (ray->ry - cub3d->player->y)
+	ray->distance = sqrt((ray->rx - cub3d->player->x) \
+			* (ray->rx - cub3d->player->x) + (ray->ry - cub3d->player->y) \
 			* (ray->ry - cub3d->player->y));
 }
 
@@ -111,6 +111,6 @@ double	cast_single_ray(t_cub3d *cub3d, t_ray *ray, double angle)
 		ray->ry = ray_v.ry;
 		ray->type = 'v';
 	}
-	return (sqrt((ray->rx - cub3d->player->x) * (ray->rx - cub3d->player->x)
+	return (sqrt((ray->rx - cub3d->player->x) * (ray->rx - cub3d->player->x) \
 			+ (ray->ry - cub3d->player->y) * (ray->ry - cub3d->player->y)));
 }
