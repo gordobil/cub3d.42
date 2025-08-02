@@ -19,8 +19,8 @@ int	close_window(t_cub3d *cub3d)
 	mlx_destroy_display(cub3d->mlx);
 	cub3d->img->img = NULL;
 	cub3d->img->addr = NULL;
-	cub3d->mlx = NULL;
 	if_free_ptr(cub3d->mlx);
+	cub3d->mlx = NULL;
 	free_cub3d(cub3d, 0);
 	exit(0);
 	return (0);

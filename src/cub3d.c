@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/08/02 12:47:24 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/08/02 15:55:07 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	init_player(t_cub3d *cub3d)
 	else if (cub3d->start_pos == 'W')
 		cub3d->player->ang = 180;
 	cub3d->map[cub3d->start_y][cub3d->start_x] = '0';
+	cub3d->player->f_col = -1;
+	cub3d->player->c_col = -1;
 	if (get_colors(cub3d->elements, cub3d->player, 3, -1) != 0)
 		return (ERROR_ELEMS);
 	return (0);

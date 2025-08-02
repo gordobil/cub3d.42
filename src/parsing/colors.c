@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/08/01 13:53:21 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/08/02 16:32:55 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,13 @@ void	set_colors(t_player *player, int i, int c[3])
 		player->c_col = (c[0] << 16) | (c[1] << 8) | c[2];
 }
 
+int	check_colors(t_player *player)
+{
+	if (player->c_col < 0 || player->f_col < 0)
+		return (ERROR_ELEMS);
+	return (0);
+}
+
 int	get_colors(char **elems, t_player *player, int i, int j)
 {
 	int		k;
@@ -56,7 +63,9 @@ int	get_colors(char **elems, t_player *player, int i, int j)
 			if (elems[i][j] == '\0')
 				break ;
 		}
+		if (k < 2 || (elems[i][j] > 47 && elems[i][j] < 58))
+			return (ERROR_ELEMS);
 		set_colors(player, i, c);
 	}
-	return (0);
+	return (check_colors(player));
 }
