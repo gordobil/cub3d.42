@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/08/01 17:16:40 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/08/02 12:47:24 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	init_player(t_cub3d *cub3d)
 		return (ERROR_FATAL);
 	cub3d->player->x = (cub3d->start_x * (double)SQ) + ((double)SQ / 2);
 	cub3d->player->y = (cub3d->start_y * (double)SQ) + ((double)SQ / 2);
-	cub3d->player->speed = 2;
+	cub3d->player->speed = 1.5;
 	if (cub3d->start_pos == 'N')
 		cub3d->player->ang = 270;
 	else if (cub3d->start_pos == 'S')
@@ -85,12 +85,3 @@ int	main(int argc, char **argv)
 		return (free_cub3d(cub3d, ret));
 	return (free_cub3d(cub3d, 0));
 }
-
-// QUE HAY K HACER:
-
-/*
-	- antes de entregar quitar lo de borrar los zone identifiers del makefile
-*/
-
-//valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s
-//-fsanitize=address

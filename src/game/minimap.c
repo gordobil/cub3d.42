@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:32:29 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/08/01 18:14:10 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/08/02 12:48:04 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	draw_minimap_pointer(t_cub3d *cub3d, int x, int y)
 {
-
 	my_pixel_put(cub3d->img, x, y, BLUE);
 	my_pixel_put(cub3d->img, x + 1, y, RED);
 	my_pixel_put(cub3d->img, x + 1, y + 1, RED);

@@ -94,7 +94,7 @@ typedef struct s_player
 	double		x;
 	double		y;
 	double		ang;
-	int			speed;
+	double		speed;
 	int			f_col;
 	int			c_col;
 }				t_player;

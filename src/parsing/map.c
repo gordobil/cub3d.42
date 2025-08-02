@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 12:15:33 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/07/23 12:18:36 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/08/02 12:22:09 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,6 @@ int	get_map(t_cub3d *cub3d, char *line)
 	cub3d->map = NULL;
 	cub3d->map = matrix_dup(new_map);
 	free_matrix(new_map);
-	i++;
-	return (0);
+	new_map = NULL;
+	return (i++, 0);
 }

@@ -25,8 +25,8 @@ char	**matrix_dup(char **matrix)
 	dup = malloc((size + 1) * sizeof(char *));
 	if (!dup)
 		return (NULL);
-	i = -1;
-	while (++i < size)
+	i = 0;
+	while (i < size)
 	{
 		dup[i] = ft_strdup(matrix[i]);
 		if (!dup[i])
@@ -34,6 +34,7 @@ char	**matrix_dup(char **matrix)
 			dup[i] = NULL;
 			return (free_matrix(dup), NULL);
 		}
+		i++;
 	}
 	dup[i] = NULL;
 	return (dup);
